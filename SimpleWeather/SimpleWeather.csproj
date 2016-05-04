@@ -109,8 +109,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Clases\Fotos.cs" />
     <Compile Include="Paginas\ContentPage.xaml.cs">
       <DependentUpon>ContentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\InformacionApp.xaml.cs">
+      <DependentUpon>InformacionApp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Principal.xaml.cs">
+      <DependentUpon>Principal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -134,6 +141,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Paginas\ContentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\InformacionApp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\Principal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

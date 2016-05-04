@@ -42,7 +42,7 @@
                            TextWrapping="Wrap"
                            FontWeight="ExtraLight" 
                            TextAlignment="Center"
-                           Foreground="DarkSlateGray">
+                           Foreground="#FF1E323C">
                 </TextBlock>
             </Viewbox>
             <Grid Grid.Row="0"
@@ -64,7 +64,7 @@
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="DarkSlateGray"/>
+                               Foreground="#FF1E323C"/>
                 </Viewbox>
                 <Viewbox Grid.Row="1"
                          Grid.Column="1"
@@ -74,7 +74,7 @@
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="DarkSlateGray"/>
+                               Foreground="#FF1E323C"/>
                 </Viewbox>
                 <Viewbox Grid.Row="2"
                          Grid.Column="0"
@@ -83,7 +83,7 @@
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="#BF3E5555"/>
+                               Foreground="#BF1E323C"/>
                 </Viewbox>
                 <Viewbox Grid.Row="2"
                          Grid.Column="1"
@@ -93,7 +93,7 @@
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="#BF3E5555"/>
+                               Foreground="#BF1E323C"/>
                 </Viewbox>
             </Grid>
             <Viewbox Grid.Row="1"
@@ -102,7 +102,7 @@
                            Text="Muy nuboso con lluvia"
                            TextWrapping="Wrap"
                            FontWeight="Normal"
-                           Foreground="DarkSlateGray"/>
+                           Foreground="#FF1E323C"/>
             </Viewbox>
             <Viewbox Grid.Row="2"
                      Grid.Column="0"
@@ -113,7 +113,7 @@
                            FontWeight="ExtraLight"
                            TextAlignment="Left"
                            VerticalAlignment="Bottom"
-                           Foreground="DarkSlateGray"/>
+                           Foreground="#FF1E323C"/>
             </Viewbox>
             <Viewbox Grid.Row="2"
                      Grid.Column="1"
@@ -122,7 +122,7 @@
                            Text="80%"
                            TextWrapping="Wrap"
                            FontWeight="ExtraLight"
-                           Foreground="DarkSlateGray"/>
+                           Foreground="#FF1E323C"/>
             </Viewbox>
         </Grid>
         <!--#endregion-->
@@ -136,8 +136,11 @@
                Source="ms-appx:///Assets/25 copia.png"/>
         <!--#endregion-->
         <!--#region Informacion Semana-->
-        <Grid Grid.Row="1"
-              Grid.ColumnSpan="2">
+        <Border BorderBrush="#FF1E323C" 
+                BorderThickness="1" 
+                Grid.Row="1" 
+                Grid.ColumnSpan="2">
+            <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -147,294 +150,308 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <!--#region Dia 1-->
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Viewbox Grid.Row="0"
+                <Border BorderBrush="#FF1E323C" BorderThickness="1" Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Grid.Row="0"
                          Grid.ColumnSpan="2"
                          VerticalAlignment="Center"
                          Margin="5">
-                    <TextBlock Text="Dom 10/10/2016"
+                        <TextBlock Text="Dom 10/10/2016"
                                TextWrapping="Wrap"
                                FontWeight="Normal"
                                TextAlignment="Center"
-                               Foreground="DarkSlateGray"/>
-                </Viewbox>
-                <Image Grid.Row="1"
+                               Foreground="#FF1E323C"/>
+                    </Viewbox>
+                    <Image Grid.Row="1"
                        Grid.ColumnSpan="2"
                        HorizontalAlignment="Stretch"
                        VerticalAlignment="Stretch"
                        Source="ms-appx:///Assets/25 copia.png"/>
 
-                <Viewbox Grid.Row="2"
+                    <Viewbox Grid.Row="2"
                          Grid.Column="0"
                           VerticalAlignment="Center">
-                    <TextBlock Text="32º"
+                        <TextBlock Text="32º"
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="DarkSlateGray"/>
-                </Viewbox>
+                               Foreground="#FF1E323C"/>
+                    </Viewbox>
 
-                <Viewbox Grid.Row="2"
+                    <Viewbox Grid.Row="2"
                          Grid.Column="1"
                          VerticalAlignment="Center">
-                    <TextBlock Text="-12º"
+                        <TextBlock Text="-12º"
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="#BF3E5555"/>
-                </Viewbox>
-            </Grid>
+                               Foreground="#BF1E323C"/>
+                    </Viewbox>
+                </Grid>
+            </Border>
             <!--#endregion-->
             <!--#region Dia 2-->
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Viewbox Grid.Row="0"
+                <Border BorderBrush="#FF1E323C" BorderThickness="1" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Grid.Row="0"
                          Grid.ColumnSpan="2"
                          VerticalAlignment="Center"
                          Margin="5">
-                    <TextBlock Text="Lun. 11/10/2016"
+                        <TextBlock Text="Lun. 11/10/2016"
                                TextWrapping="Wrap"
                                FontWeight="Normal"
                                TextAlignment="Center"
-                               Foreground="DarkSlateGray"/>
-                </Viewbox>
-                <Image Grid.Row="1"
+                               Foreground="#FF1E323C"/>
+                    </Viewbox>
+                    <Image Grid.Row="1"
                        Grid.ColumnSpan="2"
                        HorizontalAlignment="Stretch"
                        VerticalAlignment="Stretch"
                        Source="ms-appx:///Assets/25 copia.png"/>
 
-                <Viewbox Grid.Row="2"
+                    <Viewbox Grid.Row="2"
                          Grid.Column="0"
                           VerticalAlignment="Center">
-                    <TextBlock Text="32º"
+                        <TextBlock Text="32º"
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="DarkSlateGray"/>
-                </Viewbox>
+                               Foreground="#FF1E323C"/>
+                    </Viewbox>
 
-                <Viewbox Grid.Row="2"
+                    <Viewbox Grid.Row="2"
                          Grid.Column="1"
                          VerticalAlignment="Center">
-                    <TextBlock Text="-12º"
+                        <TextBlock Text="-12º"
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="#BF3E5555"/>
-                </Viewbox>
-            </Grid>
+                               Foreground="#BF1E323C"/>
+                    </Viewbox>
+                </Grid>
+            </Border>
             <!--#endregion-->
             <!--#region Dia 3-->
-            <Grid Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Viewbox Grid.Row="0"
+                <Border BorderBrush="#FF1E323C" BorderThickness="1" Grid.Column="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Grid.Row="0"
                          Grid.ColumnSpan="2"
                          VerticalAlignment="Center"
                          Margin="5">
-                    <TextBlock Text="Mar. 12/10/2016"
+                        <TextBlock Text="Mar. 12/10/2016"
                                TextWrapping="Wrap"
                                FontWeight="Normal"
                                TextAlignment="Center"
-                               Foreground="DarkSlateGray"/>
-                </Viewbox>
-                <Image Grid.Row="1"
+                               Foreground="#FF1E323C"/>
+                    </Viewbox>
+                    <Image Grid.Row="1"
                        Grid.ColumnSpan="2"
                        HorizontalAlignment="Stretch"
                        VerticalAlignment="Stretch"
                        Source="ms-appx:///Assets/25 copia.png"/>
 
-                <Viewbox Grid.Row="2"
+                    <Viewbox Grid.Row="2"
                          Grid.Column="0"
                           VerticalAlignment="Center">
-                    <TextBlock Text="32º"
+                        <TextBlock Text="32º"
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="DarkSlateGray"/>
-                </Viewbox>
+                               Foreground="#FF1E323C"/>
+                    </Viewbox>
 
-                <Viewbox Grid.Row="2"
+                    <Viewbox Grid.Row="2"
                          Grid.Column="1"
                          VerticalAlignment="Center">
-                    <TextBlock Text="-12º"
+                        <TextBlock Text="-12º"
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="#BF3E5555"/>
-                </Viewbox>
-            </Grid>
+                               Foreground="#BF1E323C"/>
+                    </Viewbox>
+                </Grid>
+            </Border>
             <!--#endregion-->
             <!--#region Dia 4-->
-            <Grid Grid.Column="3" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Viewbox Grid.Row="0"
+                <Border BorderBrush="#FF1E323C" BorderThickness="1" Grid.Column="3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Grid.Row="0"
                          Grid.ColumnSpan="2"
                          VerticalAlignment="Center"
                          Margin="5">
-                    <TextBlock Text="Mier. 13/10/2016"
+                        <TextBlock Text="Mier. 13/10/2016"
                                TextWrapping="Wrap"
                                FontWeight="Normal"
                                TextAlignment="Center"
-                               Foreground="DarkSlateGray"/>
-                </Viewbox>
-                <Image Grid.Row="1"
+                               Foreground="#FF1E323C"/>
+                    </Viewbox>
+                    <Image Grid.Row="1"
                        Grid.ColumnSpan="2"
                        HorizontalAlignment="Stretch"
                        VerticalAlignment="Stretch"
                        Source="ms-appx:///Assets/25 copia.png"/>
 
-                <Viewbox Grid.Row="2"
+                    <Viewbox Grid.Row="2"
                          Grid.Column="0"
                           VerticalAlignment="Center">
-                    <TextBlock Text="32º"
+                        <TextBlock Text="32º"
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="DarkSlateGray"/>
-                </Viewbox>
+                               Foreground="#FF1E323C"/>
+                    </Viewbox>
 
-                <Viewbox Grid.Row="2"
+                    <Viewbox Grid.Row="2"
                          Grid.Column="1"
                          VerticalAlignment="Center">
-                    <TextBlock Text="-12º"
+                        <TextBlock Text="-12º"
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="#BF3E5555"/>
-                </Viewbox>
-            </Grid>
+                               Foreground="#BF1E323C"/>
+                    </Viewbox>
+                </Grid>
+            </Border>
             <!--#endregion-->
             <!--#region Dia 5-->
-            <Grid Grid.Column="4" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Viewbox Grid.Row="0"
+                <Border BorderBrush="#FF1E323C" BorderThickness="1" Grid.Column="4">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Grid.Row="0"
                          Grid.ColumnSpan="2"
                          VerticalAlignment="Center"
                          Margin="5">
-                    <TextBlock Text="Jue. 14/10/2016"
+                        <TextBlock Text="Jue. 14/10/2016"
                                TextWrapping="Wrap"
                                FontWeight="Normal"
                                TextAlignment="Center"
-                               Foreground="DarkSlateGray"/>
-                </Viewbox>
-                <Image Grid.Row="1"
+                               Foreground="#FF1E323C"/>
+                    </Viewbox>
+                    <Image Grid.Row="1"
                        Grid.ColumnSpan="2"
                        HorizontalAlignment="Stretch"
                        VerticalAlignment="Stretch"
                        Source="ms-appx:///Assets/25 copia.png"/>
 
-                <Viewbox Grid.Row="2"
+                    <Viewbox Grid.Row="2"
                          Grid.Column="0"
                           VerticalAlignment="Center">
-                    <TextBlock Text="32º"
+                        <TextBlock Text="32º"
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="DarkSlateGray"/>
-                </Viewbox>
+                               Foreground="#FF1E323C"/>
+                    </Viewbox>
 
-                <Viewbox Grid.Row="2"
+                    <Viewbox Grid.Row="2"
                          Grid.Column="1"
                          VerticalAlignment="Center">
-                    <TextBlock Text="-12º"
+                        <TextBlock Text="-12º"
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="#BF3E5555"/>
-                </Viewbox>
-            </Grid>
+                               Foreground="#BF1E323C"/>
+                    </Viewbox>
+                </Grid>
+            </Border>
             <!--#endregion-->
             <!--#region Dia 6-->
-            <Grid Grid.Column="5" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Viewbox Grid.Row="0"
+                <Border BorderBrush="#FF1E323C" BorderThickness="1" Grid.Column="5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Grid.Row="0"
                          Grid.ColumnSpan="2"
                          VerticalAlignment="Center"
                          Margin="5">
-                    <TextBlock Text="Vier. 15/10/2016"
+                        <TextBlock Text="Vier. 15/10/2016"
                                TextWrapping="Wrap"
                                FontWeight="Normal"
                                TextAlignment="Center"
-                               Foreground="DarkSlateGray"/>
-                </Viewbox>
-                <Image Grid.Row="1"
+                               Foreground="#FF1E323C"/>
+                    </Viewbox>
+                    <Image Grid.Row="1"
                        Grid.ColumnSpan="2"
                        HorizontalAlignment="Stretch"
                        VerticalAlignment="Stretch"
                        Source="ms-appx:///Assets/25 copia.png"/>
 
-                <Viewbox Grid.Row="2"
+                    <Viewbox Grid.Row="2"
                          Grid.Column="0"
                           VerticalAlignment="Center">
-                    <TextBlock Text="32º"
+                        <TextBlock Text="32º"
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center" 
-                               Foreground="DarkSlateGray"/>
-                </Viewbox>
-
-                <Viewbox Grid.Row="2"
+                               Foreground="#FF1E323C"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="2"
                          Grid.Column="1"
                          VerticalAlignment="Center">
-                    <TextBlock Text="-12º"
+                        <TextBlock Text="-12º"
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="#BF3E5555"/>
-                </Viewbox>
-            </Grid>
+                               Foreground="#BF1E323C"/>
+                    </Viewbox>
+
+                </Grid>
+            </Border>
             <!--#endregion-->
         </Grid>
+        </Border>
+
         <!--#endregion-->
     </Grid>
     <!--#endregion-->

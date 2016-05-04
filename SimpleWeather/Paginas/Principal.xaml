@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="SimpleWeather.Paginas.Principal"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SimpleWeather.Paginas"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="#FF1E323C">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button VerticalAlignment="Top"
+                Grid.Row="0"
+                Grid.Column="0"
+                Content="&#xE700;"
+                FontFamily="Segoe MDL2 Assets" 
+                Height="50" 
+                Width="50">
+            <!--<Button.Template>
+                <ControlTemplate>
+                    <Image Source=""/>
+                </ControlTemplate>
+            </Button.Template>-->
+            <Button.Flyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="Tiempo" Click="Home_Click"/>
+                    <MenuFlyoutSeparator />
+                    <!--<MenuFlyoutItem Text="Localización"  Click="Localizacion_Click"/>
+                    <MenuFlyoutSeparator />-->
+                    <MenuFlyoutItem Text="Informacion" Click="Info_Click" />
+                </MenuFlyout>
+            </Button.Flyout>
+        </Button>
+        <ComboBox x:Name="comboBoxCiudades" 
+                  Grid.Column="1" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch" 
+                  Margin="0,3,3,3" 
+                  IsDropDownOpen="True" 
+                  Foreground="White" 
+                  BorderBrush="{x:Null}" 
+                  SelectedIndex="0" 
+                  Background="{x:Null}"
+                  FontSize="20" 
+                  SelectionChanged="comboBoxCiudades_SelectionChanged" >
+            <ComboBoxItem Content="Cáceres"/>
+            <ComboBoxItem Content="Badajoz"/>
+            <ComboBoxItem Content="Merida"/>
+            <ComboBoxItem Content="Madrid"/>
+            <ComboBoxItem Content="Sevilla"/>
+        </ComboBox>
+        <Frame x:Name="Frame" 
+               Grid.Row="1" 
+               Grid.ColumnSpan="2">
+        </Frame>
+    </Grid>
+</Page>

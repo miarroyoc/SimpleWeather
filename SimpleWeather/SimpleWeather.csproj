@@ -116,6 +116,9 @@
     <Compile Include="Paginas\InformacionApp.xaml.cs">
       <DependentUpon>InformacionApp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\NoDisponible.xaml.cs">
+      <DependentUpon>NoDisponible.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Principal.xaml.cs">
       <DependentUpon>Principal.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Paginas\InformacionApp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\NoDisponible.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

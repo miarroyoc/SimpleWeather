@@ -125,8 +125,6 @@
                            Foreground="#FF1E323C"/>
             </Viewbox>
         </Grid>
-        <!--#endregion-->
-        <!--#region Estado cielo Hoy-->
         <Image x:Name="imagenEstadoCielo"
                Grid.Row="0"
                Grid.Column="1"

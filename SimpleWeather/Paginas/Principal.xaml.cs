@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Net.NetworkInformation;
+using System.Xml;
 
 // La plantilla de elemento Página en blanco está documentada en http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,25 +28,78 @@ namespace SimpleWeather.Paginas
         {
             this.InitializeComponent();
 
-            comboBoxCiudades.IsEnabled = true;
+            if (Conexion())
+            {
+                comboBoxCiudades.IsEnabled = true;
 
-            string ciudad = Ciudad();
-            Frame.Navigate(typeof(ContentPage), ciudad);
+                string ciudad = Ciudad();
+                FrameDatos.Navigate(typeof(ContentPage), ciudad);
+            }
+            else {
+                comboBoxCiudades.IsEnabled = false;
+
+                FrameDatos.Navigate(typeof(NoDisponible));
+            }
         }
 
-        private void Home_Click(object sender, RoutedEventArgs e) {
+        public Boolean Conexion() {
+            try
+            {
+                string ciudad = Ciudad();
+                XmlReader reader = XmlReader.Create(ciudad);
+                return true;
+            }
+            catch (System.Net.WebException exc)
+            {
+                return false;
+            }
+        }
 
-            string ciudad = Ciudad();
-            comboBoxCiudades.IsEnabled = true;
-            Frame.Navigate(typeof(ContentPage), ciudad);
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (Conexion())
+            {
+                comboBoxCiudades.IsEnabled = true;
+
+                string ciudad = Ciudad();
+                FrameDatos.Navigate(typeof(ContentPage), ciudad);
+            }
+            else
+            {
+                comboBoxCiudades.IsEnabled = false;
+
+                FrameDatos.Navigate(typeof(NoDisponible));
+            }
         }
 
         private void Info_Click(object sender, RoutedEventArgs e) {
-            Frame.Navigate(typeof(InformacionApp));
+            FrameDatos.Navigate(typeof(InformacionApp));
             comboBoxCiudades.IsEnabled = false;
         }
 
-        private string Ciudad() {
+        private void comboBoxCiudades_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (comboBoxCiudades != null)
+            {
+                if (Conexion())
+                {
+                    comboBoxCiudades.IsEnabled = true;
+
+                    string ciudad = Ciudad();
+                    FrameDatos.Navigate(typeof(ContentPage), ciudad);
+                }
+                else
+                {
+                    comboBoxCiudades.IsEnabled = false;
+
+                    FrameDatos.Navigate(typeof(NoDisponible));
+                }
+            }
+        }
+
+        private string Ciudad()
+        {
             string urlCiudad = null;
 
             switch (comboBoxCiudades.SelectedIndex)
@@ -71,17 +126,5 @@ namespace SimpleWeather.Paginas
 
             return urlCiudad;
         }
-
-
-        private void comboBoxCiudades_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (comboBoxCiudades != null)
-            {
-                string ciudad = Ciudad();
-                comboBoxCiudades.IsEnabled = true;
-                Frame.Navigate(typeof(ContentPage), ciudad);
-            }
-        }
-        
     }
 }

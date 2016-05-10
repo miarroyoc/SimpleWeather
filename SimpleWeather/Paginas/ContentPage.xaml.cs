@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-//Autor
+//Autor 
 
 // La plantilla de elemento Página en blanco está documentada en http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,9 +27,10 @@ namespace SimpleWeather.Paginas
     {
 
         string urlCiudad = null;
-        DateTime now = DateTime.Now;
         //Fecha y hora actual
+        DateTime now = DateTime.Now;
         //Fotos fotos = new Fotos;
+        bool conexionCorrecta = true;
 
         #region Datos tiempo Hoy
         string probabilidadPrecipitaciones;
@@ -78,11 +79,12 @@ namespace SimpleWeather.Paginas
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            string ciudad = e.Parameter as string;
-
-            urlCiudad = ciudad;
-
-            obtener();
+            if (conexionCorrecta)
+            {
+                string ciudad = e.Parameter as string;
+                urlCiudad = ciudad;
+                obtener();
+            }
         }
 
         private void obtener()
@@ -92,20 +94,21 @@ namespace SimpleWeather.Paginas
 
             String URLString = urlCiudad;
             XmlReader reader = null;
-            bool sw = true;
+            
 
             try
             {
                 reader = XmlReader.Create(URLString);
+                conexionCorrecta = true;
             }
             catch (System.Net.WebException exc)
             {
                 //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
-                sw = false;
+                conexionCorrecta = false;
 
             }
 
-            if (sw)
+            if (conexionCorrecta)
             {
                 #region utilizar la clase XmlReader y leer xml
                 /*using (reader)

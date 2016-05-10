@@ -56,7 +56,7 @@
             <ComboBoxItem Content="Madrid"/>
             <ComboBoxItem Content="Sevilla"/>
         </ComboBox>
-        <Frame x:Name="Frame" 
+        <Frame x:Name="FrameDatos" 
                Grid.Row="1" 
                Grid.ColumnSpan="2">
         </Frame>

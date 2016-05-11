@@ -32,8 +32,6 @@
                 <MenuFlyout>
                     <MenuFlyoutItem Text="Tiempo" Click="Home_Click"/>
                     <MenuFlyoutSeparator />
-                    <!--<MenuFlyoutItem Text="Localización"  Click="Localizacion_Click"/>
-                    <MenuFlyoutSeparator />-->
                     <MenuFlyoutItem Text="Informacion" Click="Info_Click" />
                 </MenuFlyout>
             </Button.Flyout>

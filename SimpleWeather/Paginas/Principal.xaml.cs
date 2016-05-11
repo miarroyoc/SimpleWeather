@@ -24,44 +24,39 @@ namespace SimpleWeather.Paginas
     /// </summary>
     public sealed partial class Principal : Page
     {
+
+        //Constructor de clase principal, contiene el frame donde se muestran los datos.
         public Principal()
         {
             this.InitializeComponent();
 
+            //Comprueba la conexión a internet.
             if (Conexion())
             {
+                //Activa el combo de elección de ciudad si esta desactivado.
                 comboBoxCiudades.IsEnabled = true;
 
+                //Carga el frame que muestra los datos, pasando por parametro la ciudad seleccionada en el combo.
                 string ciudad = Ciudad();
                 FrameDatos.Navigate(typeof(ContentPage), ciudad);
             }
-            else {
+            else
+            {
+                //Desactiva el combo de elección de ciudad puesto que no hay conexión y no permite elegir localizacion.
                 comboBoxCiudades.IsEnabled = false;
 
+                //Carga el frame que muestra el error de conexión.
                 FrameDatos.Navigate(typeof(NoDisponible));
             }
         }
 
-        public Boolean Conexion() {
-            try
-            {
-                string ciudad = Ciudad();
-                XmlReader reader = XmlReader.Create(ciudad);
-                return true;
-            }
-            catch (System.Net.WebException exc)
-            {
-                return false;
-            }
-        }
-
+        //Evento Click del botón home, mismo funcinamiento que el constructor de Principal.
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-
             if (Conexion())
             {
                 comboBoxCiudades.IsEnabled = true;
-
+                
                 string ciudad = Ciudad();
                 FrameDatos.Navigate(typeof(ContentPage), ciudad);
             }
@@ -73,11 +68,17 @@ namespace SimpleWeather.Paginas
             }
         }
 
-        private void Info_Click(object sender, RoutedEventArgs e) {
-            FrameDatos.Navigate(typeof(InformacionApp));
+        //Evento Click del botón información.
+        private void Info_Click(object sender, RoutedEventArgs e)
+        {
+            //Desactiva el combo de elección de ciudad, en la pagina info no se permite cambiar de localización.
             comboBoxCiudades.IsEnabled = false;
+
+            //Carga el frame de información sobre la applicación.
+            FrameDatos.Navigate(typeof(InformacionApp));
         }
 
+        //Evento SelectionChanged del combo, si cambia la ciudad seleccionada se recarga la pagina, mismo funcionamiento que el constructor.
         private void comboBoxCiudades_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (comboBoxCiudades != null)
@@ -98,6 +99,7 @@ namespace SimpleWeather.Paginas
             }
         }
 
+        //Metodo utilizado por el combo para la elección de la ciudad.
         private string Ciudad()
         {
             string urlCiudad = null;
@@ -125,6 +127,22 @@ namespace SimpleWeather.Paginas
             }
 
             return urlCiudad;
+        }
+
+
+        //Metodo que comprueba si dispone de conexión y es posible acceder y leer datos del XML de la ciudad correspondiente.
+        public Boolean Conexion()
+        {
+            try
+            {
+                string ciudad = Ciudad();
+                XmlReader reader = XmlReader.Create(ciudad);
+                return true;
+            }
+            catch (System.Net.WebException exc)
+            {
+                return false;
+            }
         }
     }
 }

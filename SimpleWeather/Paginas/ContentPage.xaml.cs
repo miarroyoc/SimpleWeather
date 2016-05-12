@@ -26,14 +26,14 @@ namespace SimpleWeather.Paginas
     /// </summary>
     public sealed partial class ContentPage : Page
     {
+        //Fecha y hora actual
+        DateTime now = DateTime.Now;
 
         string urlCiudad = null;
         //Fotos fotos = new Fotos;
         bool conexionCorrecta = true;
 
         LecturaXml Datos = new LecturaXml();
-
-        DatosTiempo DatosHoy = null;
 
         public ContentPage()
         {
@@ -91,10 +91,28 @@ namespace SimpleWeather.Paginas
             String URLString = urlCiudad;
             XmlReader reader = null;
             
+            //Primer Dia
             try
             {
                 reader = XmlReader.Create(URLString);
-                conexionCorrecta = true;
+
+                #region Primer Dia
+                DatosTiempo DatosHoy = null;
+
+                String franjaHoraria = Datos.getFranjaHoraria(now);
+                String hora = Datos.getHora(now);
+
+                String dia1 = now.ToString("yyyy-MM-dd");
+
+                DatosHoy = Datos.getDatosPrimerParDias(reader, dia1, franjaHoraria, hora);
+
+                textTemperatura.Text = DatosHoy.TemperaturaActual;
+                textTemperaturaMaxima.Text = DatosHoy.TemperaturaMaxima;
+                textTemperaturaMinima.Text = DatosHoy.TemperaturaMinima;
+                textEstadoCielo.Text = DatosHoy.EstadoCielo;
+                textPrecipitaciones.Text = DatosHoy.ProbabilidadPrecipitaciones;
+                #endregion
+                
             }
             catch (System.Net.WebException exc)
             {
@@ -102,9 +120,35 @@ namespace SimpleWeather.Paginas
                 conexionCorrecta = false;
             }
 
-            if (conexionCorrecta)
+
+            //Segundo Dia
+            try
             {
-                #region utilizar la clase XmlReader y leer xml
+                reader = XmlReader.Create(URLString);
+
+                #region Segundo dia
+
+                DatosTiempo DatosDia2 = null;
+
+                String dia2 = (now.AddDays(1)).ToString("yyyy-MM-dd");
+
+                DatosDia2 = Datos.getDatosPrimerParDias(reader, dia2, "00-24", "24");
+
+                textFecha1.Text = (now.AddDays(1)).ToString("dddd, dd/MM/yyyy");
+
+                textPrecipitacionesDia2.Text = "☂ " + DatosDia2.ProbabilidadPrecipitaciones;
+                textTemperaturaMaximaDia2.Text = DatosDia2.TemperaturaMaxima;
+                textTemperaturaMinimaDia2.Text = DatosDia2.TemperaturaMinima;
+                
+                #endregion
+            }
+            catch (System.Net.WebException exc)
+            {
+                //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
+                conexionCorrecta = false;
+            }
+            
+            #region utilizar la clase XmlReader y leer xml
                 /*using (reader)
                 {
                     //reader.ReadToDescendant("dia"); para ir a un nodo exacto
@@ -138,14 +182,6 @@ namespace SimpleWeather.Paginas
 
                 #endregion
 
-                DatosHoy = Datos.getDatosActuales(reader);
-
-                textTemperatura.Text = DatosHoy.TemperaturaActual;
-                textTemperaturaMaxima.Text = DatosHoy.TemperaturaMaxima;
-                textTemperaturaMinima.Text = DatosHoy.TemperaturaMinima;
-                textEstadoCielo.Text = DatosHoy.EstadoCielo;
-                textPrecipitaciones.Text = DatosHoy.ProbabilidadPrecipitaciones;
-            }
         }
     }
 }

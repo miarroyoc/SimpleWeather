@@ -9,18 +9,13 @@ namespace SimpleWeather.Clases
 {
     class LecturaXml
     {
-        //Fecha y hora actual
-        DateTime now = DateTime.Now;
-
-        DatosTiempo DatosActuales = new DatosTiempo();
-
-        public DatosTiempo getDatosActuales(XmlReader reader)
+        public DatosTiempo getDatosPrimerParDias(XmlReader reader, String dia, String franjaHoraria, String hora)
         {
-            DatosTiempo DatosActuales = new DatosTiempo();
+            DatosTiempo Datos = new DatosTiempo();
 
-            String dia = now.ToString("yyyy-MM-dd");
-            String fh6 = getFranjaHoraria6(now), fh12 = getFranjaHoraria12(now), h6 = getHora(now);
-
+            //Fecha y hora actual
+            DateTime now = DateTime.Now;
+            
             using (reader)
             {
                 while (reader.Read())
@@ -38,18 +33,18 @@ namespace SimpleWeather.Clases
                                     if (reader.Name.Equals("prob_precipitacion")) //si es precipitaciones entra y sala los datos
                                     {
                                         reader.MoveToNextAttribute();
-                                        if (reader.Value.Equals(fh6))
+                                        if (reader.Value.Equals(franjaHoraria))
                                         {
                                             reader.Read();
                                             String aux = reader.Value;
 
                                             if (aux.Equals(""))
                                             {
-                                                DatosActuales.ProbabilidadPrecipitaciones = "0%";
+                                                Datos.ProbabilidadPrecipitaciones = "0%";
                                             }
                                             else
                                             {
-                                                DatosActuales.ProbabilidadPrecipitaciones = aux + "%";
+                                                Datos.ProbabilidadPrecipitaciones = aux + "%";
                                             }
                                         }
                                     }
@@ -57,7 +52,7 @@ namespace SimpleWeather.Clases
                                     if (reader.Name.Equals("estado_cielo")) //si es estado_cielo entra y saca los datos
                                     {
                                         reader.MoveToNextAttribute();
-                                        if (reader.Value.Equals(fh6))
+                                        if (reader.Value.Equals(franjaHoraria))
                                         {
                                             reader.MoveToNextAttribute();
                                             if (reader.Name.Equals("descripcion"))
@@ -65,13 +60,13 @@ namespace SimpleWeather.Clases
                                                 String aux = reader.Value;
                                                 if (aux.Equals(""))
                                                 {
-                                                    DatosActuales.EstadoCielo = "Sin datos";
+                                                    Datos.EstadoCielo = "Sin datos";
                                                 }
                                                 else
                                                 {
                                                     reader.Read();
-                                                    DatosActuales.EstadoCielo = aux;
-                                                    DatosActuales.CodigoEstadoCielo = reader.Value;
+                                                    Datos.EstadoCielo = aux;
+                                                    Datos.CodigoEstadoCielo = reader.Value;
                                                 }
                                             }
                                         }
@@ -89,22 +84,22 @@ namespace SimpleWeather.Clases
                                                     if (reader.IsStartElement())
                                                     {
                                                         reader.Read();
-                                                        DatosActuales.TemperaturaMaxima = reader.Value + "º";
+                                                        Datos.TemperaturaMaxima = reader.Value + "º";
                                                     }
                                                     break;
                                                 case "minima":
                                                     if (reader.IsStartElement())
                                                     {
                                                         reader.Read();
-                                                        DatosActuales.TemperaturaMinima = reader.Value + "º";
+                                                        Datos.TemperaturaMinima = reader.Value + "º";
                                                     }
                                                     break;
                                                 case "dato":
                                                     reader.MoveToNextAttribute();
-                                                    if (reader.Value.Equals(h6))
+                                                    if (reader.Value.Equals(hora))
                                                     {
                                                         reader.Read();
-                                                        DatosActuales.TemperaturaActual = reader.Value + "º";
+                                                        Datos.TemperaturaActual = reader.Value + "º";
                                                     }
                                                     break;
                                                 default:
@@ -266,11 +261,247 @@ namespace SimpleWeather.Clases
              */
             #endregion
 
-            return DatosActuales;
+            return Datos;
         }
 
+       /* public DatosTiempo getDatosSegundoParDias(XmlReader reader)
+        {
+            DatosTiempo Datos = new DatosTiempo();
+
+            String dia = now.ToString("yyyy-MM-dd");
+            String fh6 = getFranjaHoraria(now), fh12 = getFranjaHoraria12(now), h6 = getHora(now);
+
+            using (reader)
+            {
+                while (reader.Read())
+                {
+                    if (reader.Name.Equals("dia")) //lee hasta que es un nodo "dia"
+                    {
+                        reader.MoveToNextAttribute(); //saca el unico atributo que contiene el nodo dia
+                        if (reader.Value.Equals(dia)) //comprueba si es igual al dia actual, sino, se lo salta entero
+                        {
+                            while (reader.Read())
+                            {
+                                if (!reader.Name.Equals("dia")) //si encuentra otro nodo dia, no entra y se lo salta entero, 
+                                                                //puesto que si llega aqui es por que se ha analizado el nodo dia del dia actual
+                                {
+                                    if (reader.Name.Equals("prob_precipitacion")) //si es precipitaciones entra y sala los datos
+                                    {
+                                        reader.MoveToNextAttribute();
+                                        if (reader.Value.Equals(fh6))
+                                        {
+                                            reader.Read();
+                                            String aux = reader.Value;
+
+                                            if (aux.Equals(""))
+                                            {
+                                                Datos.ProbabilidadPrecipitaciones = "0%";
+                                            }
+                                            else
+                                            {
+                                                Datos.ProbabilidadPrecipitaciones = aux + "%";
+                                            }
+                                        }
+                                    }
+
+                                    if (reader.Name.Equals("estado_cielo")) //si es estado_cielo entra y saca los datos
+                                    {
+                                        reader.MoveToNextAttribute();
+                                        if (reader.Value.Equals(fh6))
+                                        {
+                                            reader.MoveToNextAttribute();
+                                            if (reader.Name.Equals("descripcion"))
+                                            {
+                                                String aux = reader.Value;
+                                                if (aux.Equals(""))
+                                                {
+                                                    Datos.EstadoCielo = "Sin datos";
+                                                }
+                                                else
+                                                {
+                                                    reader.Read();
+                                                    Datos.EstadoCielo = aux;
+                                                    Datos.CodigoEstadoCielo = reader.Value;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    if (reader.Name.Equals("temperatura")) //si es temperatura entra y saca los datos de temperatura maxima, tempretura minima y tempratura actual
+                                    {
+
+                                        do
+                                        {
+                                            reader.Read();
+                                            switch (reader.Name)
+                                            {
+                                                case "maxima":
+                                                    if (reader.IsStartElement())
+                                                    {
+                                                        reader.Read();
+                                                        Datos.TemperaturaMaxima = reader.Value + "º";
+                                                    }
+                                                    break;
+                                                case "minima":
+                                                    if (reader.IsStartElement())
+                                                    {
+                                                        reader.Read();
+                                                        Datos.TemperaturaMinima = reader.Value + "º";
+                                                    }
+                                                    break;
+                                                case "dato":
+                                                    reader.MoveToNextAttribute();
+                                                    if (reader.Value.Equals(h6))
+                                                    {
+                                                        reader.Read();
+                                                        Datos.TemperaturaActual = reader.Value + "º";
+                                                    }
+                                                    break;
+                                                default:
+
+                                                    break;
+                                            }
+                                        } while (!reader.Name.Equals("sens_termica"));
+                                    }
+
+                                }
+                                else
+                                {
+                                    reader.Skip(); //si encuentra otro nodo dia, despues de analizar el nodo dia actual, se lo salta entero
+                                }
+                            }
+                        }
+                        else
+                        {
+                            reader.Skip(); //si no es el dia actual se lo salta
+                        }
+                    }
+                }
+            }
+
+            return Datos;
+        }
+
+        public DatosTiempo getDatosUltimosDias(XmlReader reader)
+        {
+            DatosTiempo DatosActuales = new DatosTiempo();
+
+            String dia = now.ToString("yyyy-MM-dd");
+            String fh6 = getFranjaHoraria6(now), fh12 = getFranjaHoraria12(now), h6 = getHora(now);
+
+            using (reader)
+            {
+                while (reader.Read())
+                {
+                    if (reader.Name.Equals("dia")) //lee hasta que es un nodo "dia"
+                    {
+                        reader.MoveToNextAttribute(); //saca el unico atributo que contiene el nodo dia
+                        if (reader.Value.Equals(dia)) //comprueba si es igual al dia actual, sino, se lo salta entero
+                        {
+                            while (reader.Read())
+                            {
+                                if (!reader.Name.Equals("dia")) //si encuentra otro nodo dia, no entra y se lo salta entero, 
+                                                                //puesto que si llega aqui es por que se ha analizado el nodo dia del dia actual
+                                {
+                                    if (reader.Name.Equals("prob_precipitacion")) //si es precipitaciones entra y sala los datos
+                                    {
+                                        reader.MoveToNextAttribute();
+                                        if (reader.Value.Equals(fh6))
+                                        {
+                                            reader.Read();
+                                            String aux = reader.Value;
+
+                                            if (aux.Equals(""))
+                                            {
+                                                DatosActuales.ProbabilidadPrecipitaciones = "0%";
+                                            }
+                                            else
+                                            {
+                                                DatosActuales.ProbabilidadPrecipitaciones = aux + "%";
+                                            }
+                                        }
+                                    }
+
+                                    if (reader.Name.Equals("estado_cielo")) //si es estado_cielo entra y saca los datos
+                                    {
+                                        reader.MoveToNextAttribute();
+                                        if (reader.Value.Equals(fh6))
+                                        {
+                                            reader.MoveToNextAttribute();
+                                            if (reader.Name.Equals("descripcion"))
+                                            {
+                                                String aux = reader.Value;
+                                                if (aux.Equals(""))
+                                                {
+                                                    DatosActuales.EstadoCielo = "Sin datos";
+                                                }
+                                                else
+                                                {
+                                                    reader.Read();
+                                                    DatosActuales.EstadoCielo = aux;
+                                                    DatosActuales.CodigoEstadoCielo = reader.Value;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    if (reader.Name.Equals("temperatura")) //si es temperatura entra y saca los datos de temperatura maxima, tempretura minima y tempratura actual
+                                    {
+
+                                        do
+                                        {
+                                            reader.Read();
+                                            switch (reader.Name)
+                                            {
+                                                case "maxima":
+                                                    if (reader.IsStartElement())
+                                                    {
+                                                        reader.Read();
+                                                        DatosActuales.TemperaturaMaxima = reader.Value + "º";
+                                                    }
+                                                    break;
+                                                case "minima":
+                                                    if (reader.IsStartElement())
+                                                    {
+                                                        reader.Read();
+                                                        DatosActuales.TemperaturaMinima = reader.Value + "º";
+                                                    }
+                                                    break;
+                                                case "dato":
+                                                    reader.MoveToNextAttribute();
+                                                    if (reader.Value.Equals(h6))
+                                                    {
+                                                        reader.Read();
+                                                        DatosActuales.TemperaturaActual = reader.Value + "º";
+                                                    }
+                                                    break;
+                                                default:
+
+                                                    break;
+                                            }
+                                        } while (!reader.Name.Equals("sens_termica"));
+                                    }
+
+                                }
+                                else
+                                {
+                                    reader.Skip(); //si encuentra otro nodo dia, despues de analizar el nodo dia actual, se lo salta entero
+                                }
+                            }
+                        }
+                        else
+                        {
+                            reader.Skip(); //si no es el dia actual se lo salta
+                        }
+                    }
+                }
+            }
+
+            return DatosActuales;
+        }*/
+
         #region metodo para obtener la franja horaria 24/4
-        public String getFranjaHoraria6(DateTime DT)
+        public String getFranjaHoraria(DateTime DT)
         {
             String aux = DT.ToString("HH");
             String franja = "";

@@ -164,7 +164,7 @@
                          Grid.ColumnSpan="2"
                          VerticalAlignment="Center"
                          Margin="5">
-                            <TextBlock Text="Dom 10/10/2016"
+                            <TextBlock x:Name="textFecha1"
                             TextWrapping="Wrap"
                             FontWeight="Normal"
                             TextAlignment="Center"
@@ -184,7 +184,8 @@
                             <Viewbox Grid.Column="1"
                                      VerticalAlignment="Center"
                                      HorizontalAlignment="Center">
-                                <TextBlock Text="☂ 80%"
+                                <TextBlock x:Name="textPrecipitacionesDia2"
+                                    Text="☂ 80%"
                                            TextWrapping="Wrap"
                                            FontWeight="ExtraLight"
                                            TextAlignment="Center"
@@ -194,7 +195,8 @@
                         <Viewbox Grid.Row="2"
                         Grid.Column="0"
                         VerticalAlignment="Center">
-                            <TextBlock Text="32º"
+                            <TextBlock x:Name="textTemperaturaMaximaDia2"
+                                Text="32º"
                             TextWrapping="Wrap"
                             FontWeight="ExtraLight"
                             TextAlignment="Center"
@@ -204,7 +206,8 @@
                         <Viewbox Grid.Row="2"
                          Grid.Column="1"
                          VerticalAlignment="Center">
-                            <TextBlock Text="-12º"
+                            <TextBlock x:Name="textTemperaturaMinimaDia2"
+                                Text="-12º"
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
@@ -229,7 +232,8 @@
                          Grid.ColumnSpan="2"
                          VerticalAlignment="Center"
                          Margin="5">
-                            <TextBlock Text="Lun. 11/10/2016"
+                            <TextBlock x:Name="Fecha2"
+                               Text="Lun. 11/10/2016"
                                TextWrapping="Wrap"
                                FontWeight="Normal"
                                TextAlignment="Center"
@@ -294,7 +298,8 @@
                          Grid.ColumnSpan="2"
                          VerticalAlignment="Center"
                          Margin="5">
-                            <TextBlock Text="Mar. 12/10/2016"
+                            <TextBlock x:Name="Fecha3"
+                                Text="Mar. 12/10/2016"
                                TextWrapping="Wrap"
                                FontWeight="Normal"
                                TextAlignment="Center"
@@ -359,7 +364,8 @@
                          Grid.ColumnSpan="2"
                          VerticalAlignment="Center"
                          Margin="5">
-                            <TextBlock Text="Mier. 13/10/2016"
+                            <TextBlock x:Name="Fecha4"
+                                Text="Mier. 13/10/2016"
                                TextWrapping="Wrap"
                                FontWeight="Normal"
                                TextAlignment="Center"
@@ -425,7 +431,8 @@
                          Grid.ColumnSpan="2"
                          VerticalAlignment="Center"
                          Margin="5">
-                            <TextBlock Text="Jue. 14/10/2016"
+                            <TextBlock x:Name="Fecha5"
+                                Text="Jue. 14/10/2016"
                                TextWrapping="Wrap"
                                FontWeight="Normal"
                                TextAlignment="Center"
@@ -490,7 +497,8 @@
                          Grid.ColumnSpan="2"
                          VerticalAlignment="Center"
                          Margin="5">
-                            <TextBlock Text="Vier. 15/10/2016"
+                            <TextBlock x:Name="Fecha6"
+                                Text="Vier. 15/10/2016"
                                TextWrapping="Wrap"
                                FontWeight="Normal"
                                TextAlignment="Center"

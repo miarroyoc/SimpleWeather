@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 //Autor 
@@ -30,7 +31,6 @@ namespace SimpleWeather.Paginas
         DateTime now = DateTime.Now;
 
         string urlCiudad = null;
-        //Fotos fotos = new Fotos;
         bool conexionCorrecta = true;
 
         LecturaXml Datos = new LecturaXml();
@@ -39,9 +39,7 @@ namespace SimpleWeather.Paginas
         {
             this.InitializeComponent();
 
-            //fotos.Imagen = new Uri("ms-appx:///Assets/ui_preview.gif");
-            //this.DataContent = fotos;
-
+            
             #region equivaente ha sharedPreferences de android en c#
             /**/
             //necesary
@@ -90,8 +88,8 @@ namespace SimpleWeather.Paginas
 
             String URLString = urlCiudad;
             XmlReader reader = null;
-            
-            //Primer Dia
+
+            #region Primer Dia
             try
             {
                 reader = XmlReader.Create(URLString);
@@ -104,7 +102,7 @@ namespace SimpleWeather.Paginas
 
                 String dia1 = now.ToString("yyyy-MM-dd");
 
-                DatosHoy = Datos.getDatosPrimerParDias(reader, dia1, franjaHoraria, hora);
+                DatosHoy = Datos.getDatosMeteorologicos(reader, dia1, franjaHoraria, hora);
 
                 textTemperatura.Text = DatosHoy.TemperaturaActual;
                 textTemperaturaMaxima.Text = DatosHoy.TemperaturaMaxima;
@@ -112,16 +110,20 @@ namespace SimpleWeather.Paginas
                 textEstadoCielo.Text = DatosHoy.EstadoCielo;
                 textPrecipitaciones.Text = DatosHoy.ProbabilidadPrecipitaciones;
                 #endregion
-                
+
+                #region Imagen
+
+                //imagenEstadoCielo.Source = new BitmapImage( new System.Uri("ms-appx:///Assets/dia.png"));
+
+                #endregion
             }
             catch (System.Net.WebException exc)
             {
                 //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
                 conexionCorrecta = false;
             }
-
-
-            //Segundo Dia
+            #endregion
+            #region Segundo Dia
             try
             {
                 reader = XmlReader.Create(URLString);
@@ -132,14 +134,42 @@ namespace SimpleWeather.Paginas
 
                 String dia2 = (now.AddDays(1)).ToString("yyyy-MM-dd");
 
-                DatosDia2 = Datos.getDatosPrimerParDias(reader, dia2, "00-24", "24");
+                DatosDia2 = Datos.getDatosMeteorologicos(reader, dia2, "00-24", "24");
 
-                textFecha1.Text = (now.AddDays(1)).ToString("dddd, dd/MM/yyyy");
+                textFecha2.Text = (now.AddDays(1)).ToString("dddd, dd/MM/yyyy");
 
-                textPrecipitacionesDia2.Text = "☂ " + DatosDia2.ProbabilidadPrecipitaciones;
+                textPrecipitacionesDia2.Text = "☂" + DatosDia2.ProbabilidadPrecipitaciones;
                 textTemperaturaMaximaDia2.Text = DatosDia2.TemperaturaMaxima;
                 textTemperaturaMinimaDia2.Text = DatosDia2.TemperaturaMinima;
-                
+
+                #endregion
+
+            }
+            catch (System.Net.WebException exc)
+            {
+                //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
+                conexionCorrecta = false;
+            }
+            #endregion
+            #region Tercer Dia
+            try
+            {
+                reader = XmlReader.Create(URLString);
+
+                #region Tercer dia
+
+                DatosTiempo DatosDia3 = null;
+
+                String dia3 = (now.AddDays(2)).ToString("yyyy-MM-dd");
+
+                DatosDia3 = Datos.getDatosMeteorologicos(reader, dia3, "00-24", "24");
+
+                textFecha3.Text = (now.AddDays(2)).ToString("dddd, dd/MM/yyyy");
+
+                textPrecipitacionesDia3.Text = "☂" + DatosDia3.ProbabilidadPrecipitaciones;
+                textTemperaturaMaximaDia3.Text = DatosDia3.TemperaturaMaxima;
+                textTemperaturaMinimaDia3.Text = DatosDia3.TemperaturaMinima;
+
                 #endregion
             }
             catch (System.Net.WebException exc)
@@ -147,40 +177,149 @@ namespace SimpleWeather.Paginas
                 //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
                 conexionCorrecta = false;
             }
-            
-            #region utilizar la clase XmlReader y leer xml
-                /*using (reader)
-                {
-                    //reader.ReadToDescendant("dia"); para ir a un nodo exacto
+            #endregion
+            #region Cuarto Dia
+            try
+            {
+                reader = XmlReader.Create(URLString);
 
-                    while (reader.Read())
-                    {
-                        switch (reader.NodeType)
-                        {
-                            case XmlNodeType.Element:
-                                cad += "<" + reader.Name;
-                                if (reader.HasAttributes)
-                                {
-                                    while (reader.MoveToNextAttribute())
-                                    { // Read the attributes.
-                                        cad += " " + reader.Name + "='" + reader.Value + "'";
-                                    }
-                                }
-                                cad += ">";
-                                break;
-                            case XmlNodeType.Text:
-                                cad += reader.Value;
-                                break;
-                            case XmlNodeType.EndElement:
-                                cad += "</" + reader.Name + ">" + "\n";
-                                break;
-                        }
-                    }
+                #region Cuarto dia
 
-                    texto.Text = cad;
-                }*/
+                DatosTiempo DatosDia4 = null;
+
+                String dia4 = (now.AddDays(3)).ToString("yyyy-MM-dd");
+
+                DatosDia4 = Datos.getDatosMeteorologicos(reader, dia4, "00-24", "24");
+
+                textFecha4.Text = (now.AddDays(3)).ToString("dddd, dd/MM/yyyy");
+
+                textPrecipitacionesDia4.Text = "☂" + DatosDia4.ProbabilidadPrecipitaciones;
+                textTemperaturaMaximaDia4.Text = DatosDia4.TemperaturaMaxima;
+                textTemperaturaMinimaDia4.Text = DatosDia4.TemperaturaMinima;
 
                 #endregion
+            }
+            catch (System.Net.WebException exc)
+            {
+                //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
+                conexionCorrecta = false;
+            }
+            #endregion
+            #region Quinto Dia
+            try
+            {
+                reader = XmlReader.Create(URLString);
+
+                #region Quinto dia
+
+                DatosTiempo DatosDia5 = null;
+
+                String dia5 = (now.AddDays(4)).ToString("yyyy-MM-dd");
+
+                DatosDia5 = Datos.getDatosMeteorologicos(reader, dia5, "00-24", "24");
+
+                textFecha5.Text = (now.AddDays(4)).ToString("dddd, dd/MM/yyyy");
+
+                textPrecipitacionesDia5.Text = "☂" + DatosDia5.ProbabilidadPrecipitaciones;
+                textTemperaturaMaximaDia5.Text = DatosDia5.TemperaturaMaxima;
+                textTemperaturaMinimaDia5.Text = DatosDia5.TemperaturaMinima;
+
+                #endregion
+            }
+            catch (System.Net.WebException exc)
+            {
+                //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
+                conexionCorrecta = false;
+            }
+            #endregion
+            #region Sexto Dia
+            try
+            {
+                reader = XmlReader.Create(URLString);
+
+                #region Sexto dia
+
+                DatosTiempo DatosDia6 = null;
+
+                String dia6 = (now.AddDays(5)).ToString("yyyy-MM-dd");
+
+                DatosDia6 = Datos.getDatosMeteorologicos(reader, dia6, "00-24", "24");
+
+                textFecha6.Text = (now.AddDays(5)).ToString("dddd, dd/MM/yyyy");
+
+                textPrecipitacionesDia6.Text = "☂" + DatosDia6.ProbabilidadPrecipitaciones;
+                textTemperaturaMaximaDia6.Text = DatosDia6.TemperaturaMaxima;
+                textTemperaturaMinimaDia6.Text = DatosDia6.TemperaturaMinima;
+
+                #endregion
+            }
+            catch (System.Net.WebException exc)
+            {
+                //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
+                conexionCorrecta = false;
+            }
+            #endregion
+            #region Septimo Dia
+            try
+            {
+                reader = XmlReader.Create(URLString);
+
+                #region Septimo dia
+
+                DatosTiempo DatosDia7 = null;
+
+                String dia7 = (now.AddDays(6)).ToString("yyyy-MM-dd");
+
+                DatosDia7 = Datos.getDatosMeteorologicos(reader, dia7, "00-24", "24");
+
+                textFecha7.Text = (now.AddDays(6)).ToString("dddd, dd/MM/yyyy");
+
+                textPrecipitacionesDia7.Text = "☂" + DatosDia7.ProbabilidadPrecipitaciones;
+                textTemperaturaMaximaDia7.Text = DatosDia7.TemperaturaMaxima;
+                textTemperaturaMinimaDia7.Text = DatosDia7.TemperaturaMinima;
+
+                #endregion
+            }
+            catch (System.Net.WebException exc)
+            {
+                //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
+                conexionCorrecta = false;
+            }
+            #endregion
+
+            #region utilizar la clase XmlReader y leer xml
+            /*using (reader)
+            {
+                //reader.ReadToDescendant("dia"); para ir a un nodo exacto
+
+                while (reader.Read())
+                {
+                    switch (reader.NodeType)
+                    {
+                        case XmlNodeType.Element:
+                            cad += "<" + reader.Name;
+                            if (reader.HasAttributes)
+                            {
+                                while (reader.MoveToNextAttribute())
+                                { // Read the attributes.
+                                    cad += " " + reader.Name + "='" + reader.Value + "'";
+                                }
+                            }
+                            cad += ">";
+                            break;
+                        case XmlNodeType.Text:
+                            cad += reader.Value;
+                            break;
+                        case XmlNodeType.EndElement:
+                            cad += "</" + reader.Name + ">" + "\n";
+                            break;
+                    }
+                }
+
+                texto.Text = cad;
+            }*/
+
+            #endregion
 
         }
     }

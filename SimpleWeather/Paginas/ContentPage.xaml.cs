@@ -40,6 +40,7 @@ namespace SimpleWeather.Paginas
             this.InitializeComponent();
 
             
+
             #region equivaente ha sharedPreferences de android en c#
             /**/
             //necesary
@@ -84,7 +85,16 @@ namespace SimpleWeather.Paginas
 
         private void obtener()
         {
-            //aqui tambien se pueden poner para hacer el binding.
+            #region background
+            if ((Convert.ToInt32(now.ToString("HH")) <= 7) || (Convert.ToInt32(now.ToString("HH")) >= 22))
+            {
+                FondoDeApp.ImageSource = new BitmapImage(new System.Uri("ms-appx:///Assets/noche.png"));
+            }
+            else
+            {
+                FondoDeApp.ImageSource = new BitmapImage(new System.Uri("ms-appx:///Assets/dia.png"));
+            }
+            #endregion
 
             String URLString = urlCiudad;
             XmlReader reader = null;
@@ -112,8 +122,18 @@ namespace SimpleWeather.Paginas
                 #endregion
 
                 #region Imagen
+                string codigoEstadoCielo = DatosHoy.CodigoEstadoCielo;
 
-                //imagenEstadoCielo.Source = new BitmapImage( new System.Uri("ms-appx:///Assets/dia.png"));
+                codigoEstadoCielo = codigoEstadoCielo.Substring(0,2);
+
+                if ((Convert.ToInt32(now.ToString("HH")) <= 7) || (Convert.ToInt32(now.ToString("HH")) >= 22))
+                {
+                    imagenEstadoCielo.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/"+(DatosHoy.CodigoEstadoCielo) + "n" + ".png"));
+                }
+                else
+                {
+                    imagenEstadoCielo.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/" + (DatosHoy.CodigoEstadoCielo) + ".png"));
+                }
 
                 #endregion
             }
@@ -144,6 +164,21 @@ namespace SimpleWeather.Paginas
 
                 #endregion
 
+                #region Imagen
+                string codigoEstadoCielo = DatosDia2.CodigoEstadoCielo;
+
+                codigoEstadoCielo = codigoEstadoCielo.Substring(0, 2);
+
+                if ((Convert.ToInt32(now.ToString("HH")) <= 7) || (Convert.ToInt32(now.ToString("HH")) >= 22))
+                {
+                    imagenEstadoCieloDia2.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/" + (DatosDia2.CodigoEstadoCielo) + "n" + ".png"));
+                }
+                else
+                {
+                    imagenEstadoCieloDia2.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/" + (DatosDia2.CodigoEstadoCielo) + ".png"));
+                }
+
+                #endregion
             }
             catch (System.Net.WebException exc)
             {
@@ -169,6 +204,21 @@ namespace SimpleWeather.Paginas
                 textPrecipitacionesDia3.Text = "☂" + DatosDia3.ProbabilidadPrecipitaciones;
                 textTemperaturaMaximaDia3.Text = DatosDia3.TemperaturaMaxima;
                 textTemperaturaMinimaDia3.Text = DatosDia3.TemperaturaMinima;
+
+                #endregion
+                #region Imagen
+                string codigoEstadoCielo = DatosDia3.CodigoEstadoCielo;
+
+                codigoEstadoCielo = codigoEstadoCielo.Substring(0, 2);
+
+                if ((Convert.ToInt32(now.ToString("HH")) <= 7) || (Convert.ToInt32(now.ToString("HH")) >= 22))
+                {
+                    imagenEstadoCieloDia3.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/" + (DatosDia3.CodigoEstadoCielo) + "n" + ".png"));
+                }
+                else
+                {
+                    imagenEstadoCieloDia3.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/" + (DatosDia3.CodigoEstadoCielo) + ".png"));
+                }
 
                 #endregion
             }
@@ -198,6 +248,22 @@ namespace SimpleWeather.Paginas
                 textTemperaturaMinimaDia4.Text = DatosDia4.TemperaturaMinima;
 
                 #endregion
+
+                #region Imagen
+                string codigoEstadoCielo = DatosDia4.CodigoEstadoCielo;
+
+                codigoEstadoCielo = codigoEstadoCielo.Substring(0, 2);
+
+                if ((Convert.ToInt32(now.ToString("HH")) <= 7) || (Convert.ToInt32(now.ToString("HH")) >= 22))
+                {
+                    imagenEstadoCieloDia4.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/" + (DatosDia4.CodigoEstadoCielo) + "n" + ".png"));
+                }
+                else
+                {
+                    imagenEstadoCieloDia4.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/" + (DatosDia4.CodigoEstadoCielo) + ".png"));
+                }
+
+                #endregion
             }
             catch (System.Net.WebException exc)
             {
@@ -223,6 +289,22 @@ namespace SimpleWeather.Paginas
                 textPrecipitacionesDia5.Text = "☂" + DatosDia5.ProbabilidadPrecipitaciones;
                 textTemperaturaMaximaDia5.Text = DatosDia5.TemperaturaMaxima;
                 textTemperaturaMinimaDia5.Text = DatosDia5.TemperaturaMinima;
+
+                #endregion
+
+                #region Imagen
+                string codigoEstadoCielo = DatosDia5.CodigoEstadoCielo;
+
+                codigoEstadoCielo = codigoEstadoCielo.Substring(0, 2);
+
+                if ((Convert.ToInt32(now.ToString("HH")) <= 7) || (Convert.ToInt32(now.ToString("HH")) >= 22))
+                {
+                    imagenEstadoCieloDia5.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/" + (DatosDia5.CodigoEstadoCielo) + "n" + ".png"));
+                }
+                else
+                {
+                    imagenEstadoCieloDia5.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/" + (DatosDia5.CodigoEstadoCielo) + ".png"));
+                }
 
                 #endregion
             }
@@ -252,6 +334,22 @@ namespace SimpleWeather.Paginas
                 textTemperaturaMinimaDia6.Text = DatosDia6.TemperaturaMinima;
 
                 #endregion
+
+                #region Imagen
+                string codigoEstadoCielo = DatosDia6.CodigoEstadoCielo;
+
+                codigoEstadoCielo = codigoEstadoCielo.Substring(0, 2);
+
+                if ((Convert.ToInt32(now.ToString("HH")) <= 7) || (Convert.ToInt32(now.ToString("HH")) >= 22))
+                {
+                    imagenEstadoCieloDia6.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/" + (DatosDia6.CodigoEstadoCielo) + "n" + ".png"));
+                }
+                else
+                {
+                    imagenEstadoCieloDia6.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/" + (DatosDia6.CodigoEstadoCielo) + ".png"));
+                }
+
+                #endregion
             }
             catch (System.Net.WebException exc)
             {
@@ -277,6 +375,22 @@ namespace SimpleWeather.Paginas
                 textPrecipitacionesDia7.Text = "☂" + DatosDia7.ProbabilidadPrecipitaciones;
                 textTemperaturaMaximaDia7.Text = DatosDia7.TemperaturaMaxima;
                 textTemperaturaMinimaDia7.Text = DatosDia7.TemperaturaMinima;
+
+                #endregion
+
+                #region Imagen
+                string codigoEstadoCielo = DatosDia7.CodigoEstadoCielo;
+
+                codigoEstadoCielo = codigoEstadoCielo.Substring(0, 2);
+
+                if ((Convert.ToInt32(now.ToString("HH")) <= 7) || (Convert.ToInt32(now.ToString("HH")) >= 22))
+                {
+                    imagenEstadoCieloDia7.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/" + (DatosDia7.CodigoEstadoCielo) + "n" + ".png"));
+                }
+                else
+                {
+                    imagenEstadoCieloDia7.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/" + (DatosDia7.CodigoEstadoCielo) + ".png"));
+                }
 
                 #endregion
             }

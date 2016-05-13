@@ -10,8 +10,9 @@
     <!--#region Grid principal-->
     <Grid x:Name="gridPrincipal">
         <Grid.Background>
-            <ImageBrush Stretch="Fill" 
-                        ImageSource="ms-appx:///Assets/dia.png"/>
+            <ImageBrush x:Name="FondoDeApp"
+                        Stretch="Fill" 
+                        ImageSource="ms-appx:///Assets/SplashScreen.scale-100.png"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="15*"/>

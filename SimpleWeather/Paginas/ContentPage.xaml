@@ -85,7 +85,7 @@
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="#BF1E323C"/>
+                               Foreground="#BF3A5A6A"/>
                 </Viewbox>
                 <Viewbox Grid.Row="2"
                          Grid.Column="1"
@@ -95,7 +95,7 @@
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="#BF1E323C"/>
+                               Foreground="#BF3A5A6A"/>
                 </Viewbox>
             </Grid>
             <Viewbox Grid.Row="1"
@@ -213,7 +213,7 @@
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="#BF1E323C"/>
+                               Foreground="#BF3A5A6A"/>
                         </Viewbox>
                     </Grid>
                 </Border>
@@ -283,7 +283,7 @@
                                        TextWrapping="Wrap"
                                        FontWeight="ExtraLight"
                                        TextAlignment="Center"
-                                       Foreground="#BF1E323C"/>
+                                       Foreground="#BF3A5A6A"/>
                         </Viewbox>
                     </Grid>
                 </Border>
@@ -352,7 +352,7 @@
                                        TextWrapping="Wrap"
                                        FontWeight="ExtraLight"
                                        TextAlignment="Center"
-                                       Foreground="#BF1E323C"/>
+                                       Foreground="#BF3A5A6A"/>
                         </Viewbox>
                     </Grid>
                 </Border>
@@ -422,7 +422,7 @@
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="#BF1E323C"/>
+                               Foreground="#BF3A5A6A"/>
                         </Viewbox>
                     </Grid>
                 </Border>
@@ -491,7 +491,7 @@
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="#BF1E323C"/>
+                               Foreground="#BF3A5A6A"/>
                         </Viewbox>
                     </Grid>
                 </Border>
@@ -559,7 +559,7 @@
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
-                               Foreground="#BF1E323C"/>
+                               Foreground="#BF3A5A6A"/>
                         </Viewbox>
                     </Grid>
                 </Border>

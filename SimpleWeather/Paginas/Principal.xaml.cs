@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Net.NetworkInformation;
 using System.Xml;
+using SimpleWeather.Clases;
+
 
 // La plantilla de elemento Página en blanco está documentada en http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,19 +27,21 @@ namespace SimpleWeather.Paginas
     public sealed partial class Principal : Page
     {
 
+        Metodos Metodos = new Metodos();
+
         //Constructor de clase principal, contiene el frame donde se muestran los datos.
         public Principal()
         {
             this.InitializeComponent();
 
             //Comprueba la conexión a internet.
-            if (Conexion())
+            if (Metodos.Conexion(comboBoxCiudades.SelectedIndex))
             {
                 //Activa el combo de elección de ciudad si esta desactivado.
                 comboBoxCiudades.IsEnabled = true;
 
                 //Carga el frame que muestra los datos, pasando por parametro la ciudad seleccionada en el combo.
-                string ciudad = Ciudad();
+                string ciudad = Metodos.Ciudad(comboBoxCiudades.SelectedIndex);
                 FrameDatos.Navigate(typeof(ContentPage), ciudad);
             }
             else
@@ -53,11 +57,11 @@ namespace SimpleWeather.Paginas
         //Evento Click del botón home, mismo funcinamiento que el constructor de Principal.
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            if (Conexion())
+            if (Metodos.Conexion(comboBoxCiudades.SelectedIndex))
             {
                 comboBoxCiudades.IsEnabled = true;
-                
-                string ciudad = Ciudad();
+
+                string ciudad = Metodos.Ciudad(comboBoxCiudades.SelectedIndex);
                 FrameDatos.Navigate(typeof(ContentPage), ciudad);
             }
             else
@@ -83,11 +87,11 @@ namespace SimpleWeather.Paginas
         {
             if (comboBoxCiudades != null)
             {
-                if (Conexion())
+                if (Metodos.Conexion(comboBoxCiudades.SelectedIndex))
                 {
                     comboBoxCiudades.IsEnabled = true;
 
-                    string ciudad = Ciudad();
+                    string ciudad = Metodos.Ciudad(comboBoxCiudades.SelectedIndex);
                     FrameDatos.Navigate(typeof(ContentPage), ciudad);
                 }
                 else
@@ -96,52 +100,6 @@ namespace SimpleWeather.Paginas
 
                     FrameDatos.Navigate(typeof(NoDisponible));
                 }
-            }
-        }
-
-        //Metodo utilizado por el combo para la elección de la ciudad.
-        private string Ciudad()
-        {
-            string urlCiudad = null;
-
-            switch (comboBoxCiudades.SelectedIndex)
-            {
-                case 0:
-                    urlCiudad = "http://www.aemet.es/xml/municipios/localidad_10037.xml";
-                    break;
-                case 1:
-                    urlCiudad = "http://www.aemet.es/xml/municipios/localidad_06015.xml";
-                    break;
-                case 2:
-                    urlCiudad = "http://www.aemet.es/xml/municipios/localidad_06083.xml";
-                    break;
-                case 3:
-                    urlCiudad = "http://www.aemet.es/xml/municipios/localidad_28079.xml";
-                    break;
-                case 4:
-                    urlCiudad = "http://www.aemet.es/xml/municipios/localidad_41091.xml";
-                    break;
-                default:
-                    urlCiudad = null;
-                    break;
-            }
-
-            return urlCiudad;
-        }
-
-
-        //Metodo que comprueba si dispone de conexión y es posible acceder y leer datos del XML de la ciudad correspondiente.
-        public Boolean Conexion()
-        {
-            try
-            {
-                string ciudad = Ciudad();
-                XmlReader reader = XmlReader.Create(ciudad);
-                return true;
-            }
-            catch (System.Net.WebException exc)
-            {
-                return false;
             }
         }
     }

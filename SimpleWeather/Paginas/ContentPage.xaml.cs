@@ -35,11 +35,13 @@ namespace SimpleWeather.Paginas
 
         LecturaXml Datos = new LecturaXml();
 
+        Metodos Metodos = new Metodos();
+
         public ContentPage()
         {
             this.InitializeComponent();
 
-            
+
 
             #region equivaente ha sharedPreferences de android en c#
             /**/
@@ -107,8 +109,8 @@ namespace SimpleWeather.Paginas
                 #region Primer Dia
                 DatosTiempo DatosHoy = null;
 
-                String franjaHoraria = Datos.getFranjaHoraria(now);
-                String hora = Datos.getHora(now);
+                String franjaHoraria = Metodos.getFranjaHoraria(now);
+                String hora = Metodos.getHora(now);
 
                 String dia1 = now.ToString("yyyy-MM-dd");
 
@@ -124,11 +126,11 @@ namespace SimpleWeather.Paginas
                 #region Imagen
                 string codigoEstadoCielo = DatosHoy.CodigoEstadoCielo;
 
-                codigoEstadoCielo = codigoEstadoCielo.Substring(0,2);
+                codigoEstadoCielo = codigoEstadoCielo.Substring(0, 2);
 
                 if ((Convert.ToInt32(now.ToString("HH")) <= 7) || (Convert.ToInt32(now.ToString("HH")) >= 22))
                 {
-                    imagenEstadoCielo.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/"+(DatosHoy.CodigoEstadoCielo) + "n" + ".png"));
+                    imagenEstadoCielo.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/" + (DatosHoy.CodigoEstadoCielo) + "n" + ".png"));
                 }
                 else
                 {

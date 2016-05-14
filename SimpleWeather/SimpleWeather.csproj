@@ -112,6 +112,7 @@
     <Compile Include="Clases\DatosTiempo.cs" />
     <Compile Include="Clases\Fotos.cs" />
     <Compile Include="Clases\LecturaXml.cs" />
+    <Compile Include="Clases\Metodos.cs" />
     <Compile Include="Paginas\ContentPage.xaml.cs">
       <DependentUpon>ContentPage.xaml</DependentUpon>
     </Compile>

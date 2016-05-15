@@ -62,7 +62,8 @@
                 <Viewbox Grid.Row="1"
                          Grid.Column="0"
                          VerticalAlignment="Center">
-                    <TextBlock Text="↑"
+                    <TextBlock x:Name="textFlechaMaxima"
+                                Text="↑"
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
@@ -81,7 +82,8 @@
                 <Viewbox Grid.Row="2"
                          Grid.Column="0"
                          VerticalAlignment="Center">
-                    <TextBlock Text="↓"
+                    <TextBlock x:Name="textFlechaMinima"
+                               Text="↓"
                                TextWrapping="Wrap"
                                FontWeight="ExtraLight"
                                TextAlignment="Center"
@@ -110,7 +112,8 @@
                      Grid.Column="0"
                      VerticalAlignment="Center"
                      Margin="1">
-                <TextBlock Text="Probabilidad de precipitaciones:"
+                <TextBlock x:Name="textFijoPrecipitaciones"
+                           Text="Probabilidad de precipitaciones:"
                            TextWrapping="Wrap"
                            FontWeight="ExtraLight"
                            TextAlignment="Left"
@@ -136,7 +139,8 @@
                Source="ms-appx:///Assets/SplashScreen.scale-100.png"/>
         <!--#endregion-->
         <!--#region Informacion Semana-->
-        <Border BorderBrush="#FF1E323C" 
+        <Border x:Name="bordePrincipal"
+                BorderBrush="#FF1E323C" 
                 BorderThickness="1" 
                 Grid.Row="1" 
                 Grid.ColumnSpan="2">
@@ -150,7 +154,10 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <!--#region Dia 2-->
-                <Border BorderBrush="#FF1E323C" BorderThickness="1" Grid.Column="0">
+                <Border x:Name="bordeDia2" 
+                        BorderBrush="#FF1E323C" 
+                        BorderThickness="1" 
+                        Grid.Column="0">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="2*"/>
@@ -219,7 +226,10 @@
                 </Border>
                 <!--#endregion-->
                 <!--#region Dia 3-->
-                <Border BorderBrush="#FF1E323C" BorderThickness="1" Grid.Column="1">
+                <Border x:Name="bordeDia3" 
+                        BorderBrush="#FF1E323C" 
+                        BorderThickness="1" 
+                        Grid.Column="1">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="2*"/>
@@ -289,7 +299,10 @@
                 </Border>
                 <!--#endregion-->
                 <!--#region Dia 4-->
-                <Border BorderBrush="#FF1E323C" BorderThickness="1" Grid.Column="2">
+                <Border x:Name="bordeDia4" 
+                        BorderBrush="#FF1E323C" 
+                        BorderThickness="1" 
+                        Grid.Column="2">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="2*"/>
@@ -358,7 +371,10 @@
                 </Border>
                 <!--#endregion-->
                 <!--#region Dia 5-->
-                <Border BorderBrush="#FF1E323C" BorderThickness="1" Grid.Column="3">
+                <Border x:Name="bordeDia5" 
+                        BorderBrush="#FF1E323C" 
+                        BorderThickness="1" 
+                        Grid.Column="3">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="2*"/>
@@ -428,7 +444,10 @@
                 </Border>
                 <!--#endregion-->
                 <!--#region Dia 6-->
-                <Border BorderBrush="#FF1E323C" BorderThickness="1" Grid.Column="4">
+                <Border x:Name="bordeDia6" 
+                        BorderBrush="#FF1E323C" 
+                        BorderThickness="1" 
+                        Grid.Column="4">
                     <Grid >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="2*"/>
@@ -497,7 +516,10 @@
                 </Border>
                 <!--#endregion-->
                 <!--#region Dia 7-->
-                <Border BorderBrush="#FF1E323C" BorderThickness="1" Grid.Column="5">
+                <Border x:Name="bordeDia7" 
+                        BorderBrush="#FF1E323C" 
+                        BorderThickness="1"
+                        Grid.Column="5">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="2*"/>

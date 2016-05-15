@@ -15,9 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using System.Net.NetworkInformation;
 using System.Xml;
 using SimpleWeather.Clases;
-
-
-// La plantilla de elemento Página en blanco está documentada en http://go.microsoft.com/fwlink/?LinkId=234238
+using Windows.UI;
 
 namespace SimpleWeather.Paginas
 {
@@ -26,20 +24,33 @@ namespace SimpleWeather.Paginas
     /// </summary>
     public sealed partial class Principal : Page
     {
-
         Metodos Metodos = new Metodos();
-
         //Constructor de clase principal, contiene el frame donde se muestran los datos.
         public Principal()
         {
             this.InitializeComponent();
+
+            #region Cambio a modo nocturno
+
+            //Fecha y hora actual,
+            DateTime now = DateTime.Now;
+
+            if ((Convert.ToInt32(now.ToString("HH")) <= 7) || (Convert.ToInt32(now.ToString("HH")) >= 22))
+            {
+                gridPrincipal.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x09, 0x31));
+            }
+            else
+            {
+                gridPrincipal.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0x18, 0x20, 0x20));
+            }
+
+            #endregion
 
             //Comprueba la conexión a internet.
             if (Metodos.Conexion(comboBoxCiudades.SelectedIndex))
             {
                 //Activa el combo de elección de ciudad si esta desactivado.
                 comboBoxCiudades.IsEnabled = true;
-
                 //Carga el frame que muestra los datos, pasando por parametro la ciudad seleccionada en el combo.
                 string ciudad = Metodos.Ciudad(comboBoxCiudades.SelectedIndex);
                 FrameDatos.Navigate(typeof(ContentPage), ciudad);
@@ -48,7 +59,6 @@ namespace SimpleWeather.Paginas
             {
                 //Desactiva el combo de elección de ciudad puesto que no hay conexión y no permite elegir localizacion.
                 comboBoxCiudades.IsEnabled = false;
-
                 //Carga el frame que muestra el error de conexión.
                 FrameDatos.Navigate(typeof(NoDisponible));
             }
@@ -60,14 +70,12 @@ namespace SimpleWeather.Paginas
             if (Metodos.Conexion(comboBoxCiudades.SelectedIndex))
             {
                 comboBoxCiudades.IsEnabled = true;
-
                 string ciudad = Metodos.Ciudad(comboBoxCiudades.SelectedIndex);
                 FrameDatos.Navigate(typeof(ContentPage), ciudad);
             }
             else
             {
                 comboBoxCiudades.IsEnabled = false;
-
                 FrameDatos.Navigate(typeof(NoDisponible));
             }
         }
@@ -77,7 +85,6 @@ namespace SimpleWeather.Paginas
         {
             //Desactiva el combo de elección de ciudad, en la pagina info no se permite cambiar de localización.
             comboBoxCiudades.IsEnabled = false;
-
             //Carga el frame de información sobre la applicación.
             FrameDatos.Navigate(typeof(InformacionApp));
         }
@@ -90,14 +97,12 @@ namespace SimpleWeather.Paginas
                 if (Metodos.Conexion(comboBoxCiudades.SelectedIndex))
                 {
                     comboBoxCiudades.IsEnabled = true;
-
                     string ciudad = Metodos.Ciudad(comboBoxCiudades.SelectedIndex);
                     FrameDatos.Navigate(typeof(ContentPage), ciudad);
                 }
                 else
                 {
                     comboBoxCiudades.IsEnabled = false;
-
                     FrameDatos.Navigate(typeof(NoDisponible));
                 }
             }

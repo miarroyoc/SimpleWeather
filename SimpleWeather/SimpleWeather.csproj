@@ -103,14 +103,12 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Folder Include="Estilos\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Clases\DatosTiempo.cs" />
-    <Compile Include="Clases\Fotos.cs" />
     <Compile Include="Clases\LecturaXml.cs" />
     <Compile Include="Clases\Metodos.cs" />
     <Compile Include="Paginas\ContentPage.xaml.cs">

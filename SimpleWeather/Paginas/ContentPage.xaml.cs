@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Xml;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -18,31 +19,21 @@ using Windows.UI.Xaml.Navigation;
 
 //Autor 
 
-// La plantilla de elemento Página en blanco está documentada en http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace SimpleWeather.Paginas
 {
-    /// <summary>
-    /// Página vacía que se puede usar de forma independiente o a la que se puede navegar dentro de un objeto Frame.
-    /// </summary>
+   
     public sealed partial class ContentPage : Page
     {
-        //Fecha y hora actual
+        //Fecha y hora actual,
         DateTime now = DateTime.Now;
-
-        string urlCiudad = null;
-        bool conexionCorrecta = true;
-
-        LecturaXml Datos = new LecturaXml();
-
+        //instancia de la clase para poder utilizar sus metodos.
         Metodos Metodos = new Metodos();
+        //urlCiudad enviado desde el frame principal.
+        string urlCiudad = null;
 
         public ContentPage()
         {
             this.InitializeComponent();
-
-
-
             #region equivaente ha sharedPreferences de android en c#
             /**/
             //necesary
@@ -70,34 +61,109 @@ namespace SimpleWeather.Paginas
             localSettings.Values.Remove("merida");
             /**/
             #endregion
+
+            #region Cambio a modo nocturno
+
+            if ((Convert.ToInt32(now.ToString("HH")) <= 7) || (Convert.ToInt32(now.ToString("HH")) >= 22))
+            {
+                FondoDeApp.ImageSource = new BitmapImage(new System.Uri("ms-appx:///Assets/noche.png"));
+                textTemperatura.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0xDA, 0xED, 0xFE));
+                textFlechaMaxima.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textTemperaturaMaxima.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textFlechaMinima.Foreground = new SolidColorBrush(Color.FromArgb(0x55, 0xDA, 0xED, 0xFE));
+                textTemperaturaMinima.Foreground = new SolidColorBrush(Color.FromArgb(0x55, 0xDA, 0xED, 0xFE));
+                textEstadoCielo.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0xDA, 0xED, 0xFE));
+                textFijoPrecipitaciones.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textPrecipitaciones.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                bordePrincipal.BorderBrush = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                bordeDia2.BorderBrush = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textFecha2.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textPrecipitacionesDia2.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textTemperaturaMaximaDia2.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textTemperaturaMinimaDia2.Foreground = new SolidColorBrush(Color.FromArgb(0x55, 0xDA, 0xED, 0xFE));
+                bordeDia3.BorderBrush = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textFecha3.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textPrecipitacionesDia3.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textTemperaturaMaximaDia3.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textTemperaturaMinimaDia3.Foreground = new SolidColorBrush(Color.FromArgb(0x55, 0xDA, 0xED, 0xFE));
+                bordeDia4.BorderBrush = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textFecha4.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textPrecipitacionesDia4.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textTemperaturaMaximaDia4.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textTemperaturaMinimaDia4.Foreground = new SolidColorBrush(Color.FromArgb(0x55, 0xDA, 0xED, 0xFE));
+                bordeDia5.BorderBrush = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textFecha5.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textPrecipitacionesDia5.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textTemperaturaMaximaDia5.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textTemperaturaMinimaDia5.Foreground = new SolidColorBrush(Color.FromArgb(0x55, 0xDA, 0xED, 0xFE));
+                bordeDia6.BorderBrush = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textFecha6.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textPrecipitacionesDia6.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textTemperaturaMaximaDia6.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textTemperaturaMinimaDia6.Foreground = new SolidColorBrush(Color.FromArgb(0x55, 0xDA, 0xED, 0xFE));
+                bordeDia7.BorderBrush = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textFecha7.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textPrecipitacionesDia7.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textTemperaturaMaximaDia7.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
+                textTemperaturaMinimaDia7.Foreground = new SolidColorBrush(Color.FromArgb(0x55, 0xDA, 0xED, 0xFE));
+            }
+            else
+            {
+                FondoDeApp.ImageSource = new BitmapImage(new System.Uri("ms-appx:///Assets/dia.png"));
+                textTemperatura.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textFlechaMaxima.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textTemperaturaMaxima.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textFlechaMinima.Foreground = new SolidColorBrush(Color.FromArgb(0xBF, 0x3A, 0x5A, 0x6A));
+                textTemperaturaMinima.Foreground = new SolidColorBrush(Color.FromArgb(0xBF, 0x3A, 0x5A, 0x6A));
+                textEstadoCielo.Foreground = new SolidColorBrush(Color.FromArgb(0xFA, 0x1E, 0x32, 0x3C));
+                textFijoPrecipitaciones.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textPrecipitaciones.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                bordePrincipal.BorderBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                bordeDia2.BorderBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textFecha2.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textPrecipitacionesDia2.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textTemperaturaMaximaDia2.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textTemperaturaMinimaDia2.Foreground = new SolidColorBrush(Color.FromArgb(0xBF, 0x3A, 0x5A, 0x6A));
+                bordeDia3.BorderBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textFecha3.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textPrecipitacionesDia3.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textTemperaturaMaximaDia3.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textTemperaturaMinimaDia3.Foreground = new SolidColorBrush(Color.FromArgb(0xBF, 0x3A, 0x5A, 0x6A));
+                bordeDia4.BorderBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textFecha4.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textPrecipitacionesDia4.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textTemperaturaMaximaDia4.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textTemperaturaMinimaDia4.Foreground = new SolidColorBrush(Color.FromArgb(0xBF, 0x3A, 0x5A, 0x6A));
+                bordeDia5.BorderBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textFecha5.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textPrecipitacionesDia5.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textTemperaturaMaximaDia5.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textTemperaturaMinimaDia5.Foreground = new SolidColorBrush(Color.FromArgb(0xBF, 0x3A, 0x5A, 0x6A));
+                bordeDia6.BorderBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textFecha6.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textPrecipitacionesDia6.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textTemperaturaMaximaDia6.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textTemperaturaMinimaDia6.Foreground = new SolidColorBrush(Color.FromArgb(0xBF, 0x3A, 0x5A, 0x6A));
+                bordeDia7.BorderBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textFecha7.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textPrecipitacionesDia7.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textTemperaturaMaximaDia7.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
+                textTemperaturaMinimaDia7.Foreground = new SolidColorBrush(Color.FromArgb(0xBF, 0x3A, 0x5A, 0x6A));
+            }
+            #endregion
         }
 
         //Obtiene los parametros enviados desde la llamada (la ciudad seleccionada).
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (conexionCorrecta)
-            {
                 string ciudad = e.Parameter as string;
                 urlCiudad = ciudad;
                 obtener();
-            }
         }
-
-
 
         private void obtener()
         {
-            #region background
-            if ((Convert.ToInt32(now.ToString("HH")) <= 7) || (Convert.ToInt32(now.ToString("HH")) >= 22))
-            {
-                FondoDeApp.ImageSource = new BitmapImage(new System.Uri("ms-appx:///Assets/noche.png"));
-            }
-            else
-            {
-                FondoDeApp.ImageSource = new BitmapImage(new System.Uri("ms-appx:///Assets/dia.png"));
-            }
-            #endregion
-
+            LecturaXml Datos = new LecturaXml();
             String URLString = urlCiudad;
             XmlReader reader = null;
 
@@ -142,7 +208,6 @@ namespace SimpleWeather.Paginas
             catch (System.Net.WebException exc)
             {
                 //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
-                conexionCorrecta = false;
             }
             #endregion
             #region Segundo Dia
@@ -185,7 +250,6 @@ namespace SimpleWeather.Paginas
             catch (System.Net.WebException exc)
             {
                 //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
-                conexionCorrecta = false;
             }
             #endregion
             #region Tercer Dia
@@ -227,7 +291,6 @@ namespace SimpleWeather.Paginas
             catch (System.Net.WebException exc)
             {
                 //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
-                conexionCorrecta = false;
             }
             #endregion
             #region Cuarto Dia
@@ -270,7 +333,6 @@ namespace SimpleWeather.Paginas
             catch (System.Net.WebException exc)
             {
                 //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
-                conexionCorrecta = false;
             }
             #endregion
             #region Quinto Dia
@@ -313,7 +375,6 @@ namespace SimpleWeather.Paginas
             catch (System.Net.WebException exc)
             {
                 //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
-                conexionCorrecta = false;
             }
             #endregion
             #region Sexto Dia
@@ -356,7 +417,6 @@ namespace SimpleWeather.Paginas
             catch (System.Net.WebException exc)
             {
                 //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
-                conexionCorrecta = false;
             }
             #endregion
             #region Septimo Dia
@@ -399,7 +459,7 @@ namespace SimpleWeather.Paginas
             catch (System.Net.WebException exc)
             {
                 //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
-                conexionCorrecta = false;
+                
             }
             #endregion
 
@@ -436,7 +496,6 @@ namespace SimpleWeather.Paginas
             }*/
 
             #endregion
-
         }
     }
 }

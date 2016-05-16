@@ -272,6 +272,7 @@ namespace SimpleWeather.Paginas
                 textTemperaturaMinimaDia3.Text = DatosDia3.TemperaturaMinima;
 
                 #endregion
+
                 #region Imagen
                 string codigoEstadoCielo = DatosDia3.CodigoEstadoCielo;
 

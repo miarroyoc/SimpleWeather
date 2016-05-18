@@ -1,2 +1,2 @@
-# SimpleWeather [![Build Status](https://travis-ci.org/mcmiguelac/SimpleWeather.svg?branch=master)](https://travis-ci.org/mcmiguelac/SimpleWeather)
+# SimpleWeather [![Build Status](https://travis-ci.org/mcmiguelac/SimpleWeather.svg?branch=master)](https://travis-ci.org/mcmiguelac/SimpleWeather) [![GitHub issues](https://img.shields.io/github/issues/mcmiguelac/SimpleWeather.svg)](https://github.com/mcmiguelac/SimpleWeather/issues) [![npm](https://img.shields.io/badge/version-v1.0--beta-blue.svg)](https://github.com/mcmiguelac/SimpleWeather/releases)
 App de consulta meteorologica

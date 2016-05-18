@@ -114,8 +114,20 @@
     <Compile Include="Paginas\ContentPage.xaml.cs">
       <DependentUpon>ContentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\ContentPageAtemporal.xaml.cs">
+      <DependentUpon>ContentPageAtemporal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\InformacionApp.xaml.cs">
       <DependentUpon>InformacionApp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\InformacionAyuda.xaml.cs">
+      <DependentUpon>InformacionAyuda.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\InformacionCreditos.xaml.cs">
+      <DependentUpon>InformacionCreditos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\InformacionInformacion.xaml.cs">
+      <DependentUpon>InformacionInformacion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Paginas\NoDisponible.xaml.cs">
       <DependentUpon>NoDisponible.xaml</DependentUpon>
@@ -194,9 +206,18 @@
     <Content Include="Assets\73n.png" />
     <Content Include="Assets\74.png" />
     <Content Include="Assets\74n.png" />
+    <Content Include="Assets\Ayuda.png" />
+    <Content Include="Assets\Error.png" />
+    <Content Include="Assets\Informacion.png" />
+    <Content Include="Assets\Creditos.png" />
     <Content Include="Assets\dia.png" />
+    <Content Include="Assets\PantallaInformacion.png" />
     <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\MenuInformacion.png" />
+    <Content Include="Assets\MenuPrincipal.png" />
     <Content Include="Assets\noche.png" />
+    <Content Include="Assets\Principal.png" />
+    <Content Include="Assets\SelectorDeMunicipio.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
@@ -210,7 +231,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Paginas\ContentPageAtemporal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Paginas\InformacionApp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\InformacionAyuda.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\InformacionCreditos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Paginas\InformacionInformacion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

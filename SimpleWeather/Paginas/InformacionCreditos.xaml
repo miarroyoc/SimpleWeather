@@ -1,0 +1,100 @@
+﻿<Page
+    x:Class="SimpleWeather.Paginas.InformacionCreditos"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SimpleWeather.Paginas"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer >
+        <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Margin="25,5,25,5"
+             Text="Proveedor de datos"
+                       TextWrapping="Wrap"
+                           FontWeight="Normal"
+                           FontSize="50"
+                           TextAlignment="Left"
+                           Foreground="Black"/>
+        <TextBlock Grid.Row="1" 
+                   Margin="25,5,25,5"
+                   Text="   Condiciones actuales y previsiones diarias por Agencia Estatal de Meteorología."
+                       TextWrapping="Wrap"
+                           FontWeight="Normal"
+                           TextAlignment="Left"
+                   FontSize="30"
+                           Foreground="#FF666666"/>
+        <TextBlock Grid.Row="2" 
+                   Text="   Copyright de AEMET (© AEMET)."
+                       TextWrapping="Wrap"
+                   Margin="25,5,25,5"
+                           FontWeight="Normal"
+                   FontSize="30"
+                           TextAlignment="Left"
+                           Foreground="#FF666666"/>
+        <TextBlock Grid.Row="3" 
+                   Margin="25,5,25,5"
+                   Text="   AEMET no será responsable del uso o interpretación que de su información hagan los agentes reutilizadores ni tampoco de los daños sufridos o pérdidas económicas que, de forma directa o indirecta, produzcan o puedan producir perjuicios económicos, materiales o sobre datos, provocados por el uso de la información reutilizada.
+AEMET no garantiza la continuidad en la puesta a disposición de los documentos reutilizables, ni en contenido ni en forma, ni asume responsabilidades por cualquier error u omisión contenido en ellos. AEMET se reserva el derecho a modificar, añadir o eliminar la información contenida en este servidor.
+La página Web de AEMET contiene enlaces a páginas externas con una función informativa. AEMET declina cualquier responsabilidad con respecto a la información que se halle fuera de su Web."
+                       TextWrapping="Wrap"
+                       FontSize="30"
+                           FontWeight="Normal"
+                           TextAlignment="Justify"
+                           Foreground="#FF666666"/>
+            <TextBlock Grid.Row="4" 
+                   Margin="25,5,25,5"
+                   Text="   El agente reutilizador se halla sometido a la normativa aplicable en materia de reutilización de la información del sector público, incluyendo el régimen sancionador previsto en el artículo 11 de la Ley 37/2007, de 16 de noviembre, sobre reutilización de la información del sector público."
+                       TextWrapping="Wrap"
+                       FontSize="30"
+                           FontWeight="Normal"
+                           TextAlignment="Justify"
+                           Foreground="#FF666666"/>
+        <TextBlock Grid.Row="5"
+                   Margin="25,5,25,5"
+             Text="Autor de imágenes"
+                       TextWrapping="Wrap"
+                           FontWeight="Normal"
+                           FontSize="50"
+                           TextAlignment="Left"
+                           Foreground="Black"/>
+        <TextBlock Grid.Row="6" 
+                   Text="   Miguel Ángel Arroyo Clemente"
+                       TextWrapping="Wrap"
+                   Margin="25,5,25,5"
+                           FontWeight="Normal"
+                   FontSize="30"
+                           TextAlignment="Left"
+                           Foreground="#FF666666"/>
+        <TextBlock Grid.Row="7"
+                   Margin="25,5,25,5"
+             Text="Autor de la aplicación"
+                       TextWrapping="Wrap"
+                           FontWeight="Normal"
+                           FontSize="50"
+                           TextAlignment="Left"
+                           Foreground="Black"/>
+        <TextBlock Grid.Row="8" 
+                   Text="   Miguel Ángel Arroyo Clemente"
+                       TextWrapping="Wrap"
+                   Margin="25,5,25,5"
+                           FontWeight="Normal"
+                   FontSize="30"
+                           TextAlignment="Left"
+                           Foreground="#FF666666"/>
+
+    </Grid>
+    </ScrollViewer>
+</Page>

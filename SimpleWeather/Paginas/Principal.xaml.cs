@@ -25,15 +25,20 @@ namespace SimpleWeather.Paginas
     public sealed partial class Principal : Page
     {
         Metodos Metodos = new Metodos();
+
+        String hoy = null;
         //Constructor de clase principal, contiene el frame donde se muestran los datos.
         public Principal()
         {
             this.InitializeComponent();
 
-            #region Cambio a modo nocturno
-
             //Fecha y hora actual,
             DateTime now = DateTime.Now;
+
+            //usado para comprobar la feha de elaboración
+            hoy = now.ToString("yyyy-MM-dd");
+
+            #region Cambio a modo nocturno
 
             if ((Convert.ToInt32(now.ToString("HH")) <= 7) || (Convert.ToInt32(now.ToString("HH")) >= 22))
             {
@@ -53,7 +58,16 @@ namespace SimpleWeather.Paginas
                 comboBoxCiudades.IsEnabled = true;
                 //Carga el frame que muestra los datos, pasando por parametro la ciudad seleccionada en el combo.
                 string ciudad = Metodos.Ciudad(comboBoxCiudades.SelectedIndex);
-                FrameDatos.Navigate(typeof(ContentPage), ciudad);
+
+                if ((Metodos.FechaElaboracion(comboBoxCiudades.SelectedIndex)).Equals(hoy))
+                {
+                    FrameDatos.Navigate(typeof(ContentPage), ciudad);
+                }
+                else
+                {
+                    FrameDatos.Navigate(typeof(ContentPageAtemporal), ciudad);
+                }
+               
             }
             else
             {
@@ -71,7 +85,14 @@ namespace SimpleWeather.Paginas
             {
                 comboBoxCiudades.IsEnabled = true;
                 string ciudad = Metodos.Ciudad(comboBoxCiudades.SelectedIndex);
-                FrameDatos.Navigate(typeof(ContentPage), ciudad);
+                if ((Metodos.FechaElaboracion(comboBoxCiudades.SelectedIndex)).Equals(hoy))
+                {
+                    FrameDatos.Navigate(typeof(ContentPage), ciudad);
+                }
+                else
+                {
+                    FrameDatos.Navigate(typeof(ContentPageAtemporal), ciudad);
+                }
             }
             else
             {
@@ -98,7 +119,14 @@ namespace SimpleWeather.Paginas
                 {
                     comboBoxCiudades.IsEnabled = true;
                     string ciudad = Metodos.Ciudad(comboBoxCiudades.SelectedIndex);
-                    FrameDatos.Navigate(typeof(ContentPage), ciudad);
+                    if ((Metodos.FechaElaboracion(comboBoxCiudades.SelectedIndex)).Equals(hoy))
+                    {
+                        FrameDatos.Navigate(typeof(ContentPage), ciudad);
+                    }
+                    else
+                    {
+                        FrameDatos.Navigate(typeof(ContentPageAtemporal), ciudad);
+                    }
                 }
                 else
                 {

@@ -356,6 +356,33 @@ namespace SimpleWeather.Clases
                 return false;
             }
         }
+
+        public string FechaElaboracion(int indice) {
+            string fecha = null;
+
+            try
+            {
+                string ciudad = Ciudad(indice);
+                XmlReader reader = XmlReader.Create(ciudad);
+
+                using (reader)
+                {
+                    while (reader.Read())
+                    {
+                        if (reader.Name.Equals("elaborado") && reader.IsStartElement()) //lee unicamente el nodo elaborado
+                        {
+                            reader.Read();
+                            fecha = reader.Value;
+                        }
+                    }
+                }
+            }
+            catch (System.Net.WebException exc)
+            {
+
+            }
+            return fecha.Substring(0,10);
+        }
         
         #region metodo para obtener la franja horaria 24/4
         public String getFranjaHoraria(DateTime DT)

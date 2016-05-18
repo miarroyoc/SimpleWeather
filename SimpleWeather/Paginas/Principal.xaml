@@ -24,16 +24,11 @@
                 FontFamily="Segoe MDL2 Assets" 
                 Height="50" 
                 Width="50">
-            <!--<Button.Template>
-                <ControlTemplate>
-                    <Image Source=""/>
-                </ControlTemplate>
-            </Button.Template>-->
             <Button.Flyout>
                 <MenuFlyout>
                     <MenuFlyoutItem Text="Tiempo" Click="Home_Click"/>
                     <MenuFlyoutSeparator />
-                    <MenuFlyoutItem Text="Informacion" Click="Info_Click" />
+                    <MenuFlyoutItem Text="Información" Click="Info_Click" />
                 </MenuFlyout>
             </Button.Flyout>
         </Button>

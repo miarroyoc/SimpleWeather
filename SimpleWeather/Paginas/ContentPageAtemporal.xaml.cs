@@ -17,12 +17,14 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
-//Autor 
+// La plantilla de elemento Página en blanco está documentada en http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace SimpleWeather.Paginas
 {
-   
-    public sealed partial class ContentPage : Page
+    /// <summary>
+    /// Página vacía que se puede usar de forma independiente o a la que se puede navegar dentro de un objeto Frame.
+    /// </summary>
+    public sealed partial class ContentPageAtemporal : Page
     {
         //Fecha y hora actual,
         DateTime now = DateTime.Now;
@@ -30,10 +32,10 @@ namespace SimpleWeather.Paginas
         Metodos Metodos = new Metodos();
         //urlCiudad enviado desde el frame principal.
         string urlCiudad = null;
-
-        public ContentPage()
+        public ContentPageAtemporal()
         {
             this.InitializeComponent();
+
             #region equivaente ha sharedPreferences de android en c#
             /**/
             //necesary
@@ -101,11 +103,6 @@ namespace SimpleWeather.Paginas
                 textPrecipitacionesDia6.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
                 textTemperaturaMaximaDia6.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
                 textTemperaturaMinimaDia6.Foreground = new SolidColorBrush(Color.FromArgb(0x55, 0xDA, 0xED, 0xFE));
-                bordeDia7.BorderBrush = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
-                textFecha7.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
-                textPrecipitacionesDia7.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
-                textTemperaturaMaximaDia7.Foreground = new SolidColorBrush(Color.FromArgb(0xAA, 0xDA, 0xED, 0xFE));
-                textTemperaturaMinimaDia7.Foreground = new SolidColorBrush(Color.FromArgb(0x55, 0xDA, 0xED, 0xFE));
             }
             else
             {
@@ -144,11 +141,6 @@ namespace SimpleWeather.Paginas
                 textPrecipitacionesDia6.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
                 textTemperaturaMaximaDia6.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
                 textTemperaturaMinimaDia6.Foreground = new SolidColorBrush(Color.FromArgb(0xBF, 0x3A, 0x5A, 0x6A));
-                bordeDia7.BorderBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
-                textFecha7.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
-                textPrecipitacionesDia7.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
-                textTemperaturaMaximaDia7.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x1E, 0x32, 0x3C));
-                textTemperaturaMinimaDia7.Foreground = new SolidColorBrush(Color.FromArgb(0xBF, 0x3A, 0x5A, 0x6A));
             }
             #endregion
         }
@@ -156,9 +148,9 @@ namespace SimpleWeather.Paginas
         //Obtiene los parametros enviados desde la llamada (la ciudad seleccionada).
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-                string ciudad = e.Parameter as string;
-                urlCiudad = ciudad;
-                obtener();
+            string ciudad = e.Parameter as string;
+            urlCiudad = ciudad;
+            obtener();
         }
 
         private void obtener()
@@ -420,50 +412,7 @@ namespace SimpleWeather.Paginas
                 //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
             }
             #endregion
-            #region Septimo Dia
-            try
-            {
-                reader = XmlReader.Create(URLString);
-
-                #region Septimo dia
-
-                DatosTiempo DatosDia7 = null;
-
-                String dia7 = (now.AddDays(6)).ToString("yyyy-MM-dd");
-
-                DatosDia7 = Datos.getDatosMeteorologicos(reader, dia7, "00-24", "24");
-
-                textFecha7.Text = (now.AddDays(6)).ToString("dddd, dd");
-
-                textPrecipitacionesDia7.Text = "☂" + DatosDia7.ProbabilidadPrecipitaciones;
-                textTemperaturaMaximaDia7.Text = DatosDia7.TemperaturaMaxima;
-                textTemperaturaMinimaDia7.Text = DatosDia7.TemperaturaMinima;
-
-                #endregion
-
-                #region Imagen
-                string codigoEstadoCielo = DatosDia7.CodigoEstadoCielo;
-
-                codigoEstadoCielo = codigoEstadoCielo.Substring(0, 2);
-
-                if ((Convert.ToInt32(now.ToString("HH")) <= 7) || (Convert.ToInt32(now.ToString("HH")) >= 22))
-                {
-                    imagenEstadoCieloDia7.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/" + (codigoEstadoCielo) + "n" + ".png"));
-                }
-                else
-                {
-                    imagenEstadoCieloDia7.Source = new BitmapImage(new System.Uri("ms-appx:///Assets/" + (codigoEstadoCielo) + ".png"));
-                }
-
-                #endregion
-            }
-            catch (System.Net.WebException exc)
-            {
-                //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
-                
-            }
-            #endregion
-
+           
             #region utilizar la clase XmlReader y leer xml
             /*using (reader)
             {

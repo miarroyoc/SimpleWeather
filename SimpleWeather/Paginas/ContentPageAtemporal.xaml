@@ -1,0 +1,523 @@
+﻿<Page
+    x:Class="SimpleWeather.Paginas.ContentPageAtemporal"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SimpleWeather.Paginas"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <!--#region Grid principal-->
+    <Grid x:Name="gridPrincipal">
+        <Grid.Background>
+            <ImageBrush x:Name="FondoDeApp"
+                        Stretch="Fill" 
+                        ImageSource="ms-appx:///Assets/SplashScreen.scale-100.png"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <!--#region Informacion Hoy-->
+        <Grid Grid.Row="0"
+              Grid.Column="0"
+              Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Row="0"
+                     Grid.Column="0"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center">
+                <TextBlock x:Name="textTemperatura"
+                           Text="30º"
+                           TextWrapping="Wrap"
+                           FontWeight="ExtraLight" 
+                           TextAlignment="Center"
+                           Foreground="#FF1E323C">
+                </TextBlock>
+            </Viewbox>
+            <Grid Grid.Row="0"
+                  Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Row="1"
+                         Grid.Column="0"
+                         VerticalAlignment="Center">
+                    <TextBlock x:Name="textFlechaMaxima"
+                                Text="↑"
+                               TextWrapping="Wrap"
+                               FontWeight="ExtraLight"
+                               TextAlignment="Center"
+                               Foreground="#FF1E323C"/>
+                </Viewbox>
+                <Viewbox Grid.Row="1"
+                         Grid.Column="1"
+                          VerticalAlignment="Center">
+                    <TextBlock x:Name="textTemperaturaMaxima"
+                               Text="32º"
+                               TextWrapping="Wrap"
+                               FontWeight="ExtraLight"
+                               TextAlignment="Center"
+                               Foreground="#FF1E323C"/>
+                </Viewbox>
+                <Viewbox Grid.Row="2"
+                         Grid.Column="0"
+                         VerticalAlignment="Center">
+                    <TextBlock x:Name="textFlechaMinima"
+                               Text="↓"
+                               TextWrapping="Wrap"
+                               FontWeight="ExtraLight"
+                               TextAlignment="Center"
+                               Foreground="#BF3A5A6A"/>
+                </Viewbox>
+                <Viewbox Grid.Row="2"
+                         Grid.Column="1"
+                         VerticalAlignment="Center">
+                    <TextBlock x:Name="textTemperaturaMinima"
+                               Text="-12º"
+                               TextWrapping="Wrap"
+                               FontWeight="ExtraLight"
+                               TextAlignment="Center"
+                               Foreground="#BF3A5A6A"/>
+                </Viewbox>
+            </Grid>
+            <Viewbox Grid.Row="1"
+                     Grid.ColumnSpan="2" >
+                <TextBlock x:Name="textEstadoCielo"
+                           Text="Muy nuboso con lluvia"
+                           TextWrapping="Wrap"
+                           FontWeight="Normal"
+                           Foreground="#FF1E323C"/>
+            </Viewbox>
+            <Viewbox Grid.Row="2"
+                     Grid.Column="0"
+                     VerticalAlignment="Center"
+                     Margin="1">
+                <TextBlock x:Name="textFijoPrecipitaciones"
+                           Text="Probabilidad de precipitaciones:"
+                           TextWrapping="Wrap"
+                           FontWeight="ExtraLight"
+                           TextAlignment="Left"
+                           VerticalAlignment="Bottom"
+                           Foreground="#FF1E323C"/>
+            </Viewbox>
+            <Viewbox Grid.Row="2"
+                     Grid.Column="1"
+                     VerticalAlignment="Bottom">
+                <TextBlock x:Name="textPrecipitaciones"
+                           Text="80%"
+                           TextWrapping="Wrap"
+                           FontWeight="ExtraLight"
+                           Foreground="#FF1E323C"/>
+            </Viewbox>
+        </Grid>
+        <Image x:Name="imagenEstadoCielo"
+               Grid.Row="0"
+               Grid.Column="1"
+               Margin="20"
+               HorizontalAlignment="Stretch"
+               VerticalAlignment="Stretch"
+               Source="ms-appx:///Assets/SplashScreen.scale-100.png"/>
+        <!--#endregion-->
+        <!--#region Informacion Semana-->
+        <Border x:Name="bordePrincipal"
+                BorderBrush="#FF1E323C" 
+                BorderThickness="1" 
+                Grid.Row="1" 
+                Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <!--#region Dia 2-->
+                <Border x:Name="bordeDia2" 
+                        BorderBrush="#FF1E323C" 
+                        BorderThickness="1" 
+                        Grid.Column="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Row="0"
+                         Grid.ColumnSpan="2"
+                         VerticalAlignment="Center"
+                         Margin="5">
+                            <TextBlock x:Name="textFecha2"
+                            TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            TextAlignment="Center"
+                            Foreground="#FF1E323C"/>
+                        </Viewbox>
+                        <Grid Grid.Row="1"
+                        Grid.ColumnSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="imagenEstadoCieloDia2"
+                                   Grid.Column="0" 
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   Source="ms-appx:///Assets/SplashScreen.scale-100.png"
+                                   Margin="5"/>
+                            <Viewbox Grid.Column="1"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center">
+                                <TextBlock x:Name="textPrecipitacionesDia2"
+                                    Text="☂ 80%"
+                                           TextWrapping="Wrap"
+                                           FontWeight="ExtraLight"
+                                           TextAlignment="Center"
+                                           Foreground="#FF1E323C"/>
+                            </Viewbox>
+                        </Grid>
+                        <Viewbox Grid.Row="2"
+                        Grid.Column="0"
+                        VerticalAlignment="Center">
+                            <TextBlock x:Name="textTemperaturaMaximaDia2"
+                                Text="32º"
+                            TextWrapping="Wrap"
+                            FontWeight="ExtraLight"
+                            TextAlignment="Center"
+                               Foreground="#FF1E323C"/>
+                        </Viewbox>
+
+                        <Viewbox Grid.Row="2"
+                         Grid.Column="1"
+                         VerticalAlignment="Center">
+                            <TextBlock x:Name="textTemperaturaMinimaDia2"
+                                Text="-12º"
+                               TextWrapping="Wrap"
+                               FontWeight="ExtraLight"
+                               TextAlignment="Center"
+                               Foreground="#BF3A5A6A"/>
+                        </Viewbox>
+                    </Grid>
+                </Border>
+                <!--#endregion-->
+                <!--#region Dia 3-->
+                <Border x:Name="bordeDia3" 
+                        BorderBrush="#FF1E323C" 
+                        BorderThickness="1" 
+                        Grid.Column="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Row="0"
+                         Grid.ColumnSpan="2"
+                         VerticalAlignment="Center"
+                         Margin="5">
+                            <TextBlock x:Name="textFecha3"
+                               Text="Lun. 11/10/2016"
+                               TextWrapping="Wrap"
+                               FontWeight="Normal"
+                               TextAlignment="Center"
+                               Foreground="#FF1E323C"/>
+                        </Viewbox>
+                        <Grid Grid.Row="1"
+                        Grid.ColumnSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="imagenEstadoCieloDia3"
+                                   Grid.Column="0" 
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   Source="ms-appx:///Assets/SplashScreen.scale-100.png"
+                                   Margin="5"/>
+                            <Viewbox Grid.Column="1"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center">
+                                <TextBlock x:Name="textPrecipitacionesDia3"
+                                           Text="☂ 80%"
+                                           TextWrapping="Wrap"
+                                           FontWeight="ExtraLight"
+                                           TextAlignment="Center"
+                                           Foreground="#FF1E323C"/>
+                            </Viewbox>
+                        </Grid>
+                        <Viewbox Grid.Row="2"
+                                 Grid.Column="0"
+                                 VerticalAlignment="Center">
+                            <TextBlock x:Name="textTemperaturaMaximaDia3" 
+                                       Text="32º"
+                                       TextWrapping="Wrap"
+                                       FontWeight="ExtraLight"
+                                       TextAlignment="Center"
+                                       Foreground="#FF1E323C"/>
+                        </Viewbox>
+
+                        <Viewbox Grid.Row="2"
+                                 Grid.Column="1"
+                                 VerticalAlignment="Center">
+                            <TextBlock x:Name="textTemperaturaMinimaDia3" 
+                                       Text="-12º"
+                                       TextWrapping="Wrap"
+                                       FontWeight="ExtraLight"
+                                       TextAlignment="Center"
+                                       Foreground="#BF3A5A6A"/>
+                        </Viewbox>
+                    </Grid>
+                </Border>
+                <!--#endregion-->
+                <!--#region Dia 4-->
+                <Border x:Name="bordeDia4" 
+                        BorderBrush="#FF1E323C" 
+                        BorderThickness="1" 
+                        Grid.Column="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Row="0"
+                         Grid.ColumnSpan="2"
+                         VerticalAlignment="Center"
+                         Margin="5">
+                            <TextBlock x:Name="textFecha4"
+                                Text="Mar. 12/10/2016"
+                               TextWrapping="Wrap"
+                               FontWeight="Normal"
+                               TextAlignment="Center"
+                               Foreground="#FF1E323C"/>
+                        </Viewbox>
+                        <Grid Grid.Row="1"
+                        Grid.ColumnSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="imagenEstadoCieloDia4" Grid.Column="0" 
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   Source="ms-appx:///Assets/SplashScreen.scale-100.png"
+                                   Margin="5"/>
+                            <Viewbox Grid.Column="1"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center">
+                                <TextBlock x:Name="textPrecipitacionesDia4"
+                                           Text="☂ 80%"
+                                           TextWrapping="Wrap"
+                                           FontWeight="ExtraLight"
+                                           TextAlignment="Center"
+                                           Foreground="#FF1E323C"/>
+                            </Viewbox>
+                        </Grid>
+                        <Viewbox Grid.Row="2"
+                                 Grid.Column="0"
+                                 VerticalAlignment="Center">
+                            <TextBlock x:Name="textTemperaturaMaximaDia4" 
+                                       Text="32º"
+                                       TextWrapping="Wrap"
+                                       FontWeight="ExtraLight"
+                                       TextAlignment="Center"
+                                       Foreground="#FF1E323C"/>
+                        </Viewbox>
+
+                        <Viewbox Grid.Row="2"
+                                 Grid.Column="1"
+                                 VerticalAlignment="Center">
+                            <TextBlock x:Name="textTemperaturaMinimaDia4" 
+                                       Text="-12º"
+                                       TextWrapping="Wrap"
+                                       FontWeight="ExtraLight"
+                                       TextAlignment="Center"
+                                       Foreground="#BF3A5A6A"/>
+                        </Viewbox>
+                    </Grid>
+                </Border>
+                <!--#endregion-->
+                <!--#region Dia 5-->
+                <Border x:Name="bordeDia5" 
+                        BorderBrush="#FF1E323C" 
+                        BorderThickness="1" 
+                        Grid.Column="3">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Row="0"
+                         Grid.ColumnSpan="2"
+                         VerticalAlignment="Center"
+                         Margin="5">
+                            <TextBlock x:Name="textFecha5"
+                                Text="Mier. 13/10/2016"
+                               TextWrapping="Wrap"
+                               FontWeight="Normal"
+                               TextAlignment="Center"
+                               Foreground="#FF1E323C"/>
+                        </Viewbox>
+                        <Grid Grid.Row="1"
+                        Grid.ColumnSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="imagenEstadoCieloDia5" Grid.Column="0" 
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   Source="ms-appx:///Assets/SplashScreen.scale-100.png"
+                                   Margin="5"/>
+                            <Viewbox Grid.Column="1"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center">
+                                <TextBlock x:Name="textPrecipitacionesDia5" 
+                                           Text="☂ 80%"
+                                           TextWrapping="Wrap"
+                                           FontWeight="ExtraLight"
+                                           TextAlignment="Center"
+                                           Foreground="#FF1E323C"/>
+                            </Viewbox>
+                        </Grid>
+
+                        <Viewbox Grid.Row="2"
+                         Grid.Column="0"
+                          VerticalAlignment="Center">
+                            <TextBlock x:Name="textTemperaturaMaximaDia5" 
+                                Text="32º"
+                               TextWrapping="Wrap"
+                               FontWeight="ExtraLight"
+                               TextAlignment="Center"
+                               Foreground="#FF1E323C"/>
+                        </Viewbox>
+
+                        <Viewbox Grid.Row="2"
+                         Grid.Column="1"
+                         VerticalAlignment="Center">
+                            <TextBlock x:Name="textTemperaturaMinimaDia5" 
+                                       Text="-12º"
+                               TextWrapping="Wrap"
+                               FontWeight="ExtraLight"
+                               TextAlignment="Center"
+                               Foreground="#BF3A5A6A"/>
+                        </Viewbox>
+                    </Grid>
+                </Border>
+                <!--#endregion-->
+                <!--#region Dia 6-->
+                <Border x:Name="bordeDia6" 
+                        BorderBrush="#FF1E323C" 
+                        BorderThickness="1" 
+                        Grid.Column="4">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Row="0"
+                         Grid.ColumnSpan="2"
+                         VerticalAlignment="Center"
+                         Margin="5">
+                            <TextBlock x:Name="textFecha6"
+                                Text="Jue. 14/10/2016"
+                               TextWrapping="Wrap"
+                               FontWeight="Normal"
+                               TextAlignment="Center"
+                               Foreground="#FF1E323C"/>
+                        </Viewbox>
+                        <Grid Grid.Row="1"
+                        Grid.ColumnSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="imagenEstadoCieloDia6" Grid.Column="0" 
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   Source="ms-appx:///Assets/SplashScreen.scale-100.png"
+                                   Margin="5"/>
+                            <Viewbox Grid.Column="1"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center">
+                                <TextBlock x:Name="textPrecipitacionesDia6"
+                                           Text="☂ 80%"
+                                           TextWrapping="Wrap"
+                                           FontWeight="ExtraLight"
+                                           TextAlignment="Center"
+                                           Foreground="#FF1E323C"/>
+                            </Viewbox>
+                        </Grid>
+                        <Viewbox Grid.Row="2"
+                         Grid.Column="0"
+                          VerticalAlignment="Center">
+                            <TextBlock x:Name="textTemperaturaMaximaDia6"
+                                       Text="32º"
+                               TextWrapping="Wrap"
+                               FontWeight="ExtraLight"
+                               TextAlignment="Center"
+                               Foreground="#FF1E323C"/>
+                        </Viewbox>
+
+                        <Viewbox Grid.Row="2"
+                         Grid.Column="1"
+                         VerticalAlignment="Center">
+                            <TextBlock x:Name="textTemperaturaMinimaDia6"
+                                       Text="-12º"
+                               TextWrapping="Wrap"
+                               FontWeight="ExtraLight"
+                               TextAlignment="Center"
+                               Foreground="#BF3A5A6A"/>
+                        </Viewbox>
+                    </Grid>
+                </Border>
+                <!--#endregion-->
+            </Grid>
+        </Border>
+
+        <!--#endregion-->
+    </Grid>
+    <!--#endregion-->
+</Page>

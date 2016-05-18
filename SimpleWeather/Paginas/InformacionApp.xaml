@@ -7,7 +7,61 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid x:Name="gridPrincipal"
+        Background="#F2F2F2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid  Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Center"
+                     Margin="25,10,25,10">
+                <TextBlock x:Name="botonCreditos"
+                           Text="Créditos"
+                           TextWrapping="Wrap"
+                           FontWeight="Normal"
+                           TextAlignment="Center"
+                           Foreground="Black"
+                           Tapped="tapped_botonCreditos"/>
+            </Viewbox>
+            <Viewbox Grid.Column="1"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Center"
+                     Margin="25,10,25,10">
+                <TextBlock x:Name="botonInformacion"
+                           Text="Información"
+                           TextWrapping="Wrap"
+                           FontWeight="Normal"
+                           TextAlignment="Center"
+                           Foreground="#FF666666"
+                           Tapped="tapped_botonInformacion"/>
+            </Viewbox>
+            <Viewbox Grid.Column="2"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Center"
+                     Margin="25,10,25,10">
+                <TextBlock x:Name="botonAyuda"
+                           Text="Ayuda"
+                           TextWrapping="Wrap"
+                           FontWeight="Normal"
+                           TextAlignment="Center"
+                           Foreground="#FF666666"
+                           Tapped="tapped_botonAyuda"/>
+            </Viewbox>
+        </Grid>
+        <Frame x:Name="FrameDatos" 
+               Grid.Row="1"
+               Background="White">
+        </Frame>
     </Grid>
 </Page>

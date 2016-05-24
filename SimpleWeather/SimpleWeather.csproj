@@ -153,6 +153,7 @@
     <Content Include="Assets\14.png" />
     <Content Include="Assets\14n.png" />
     <Content Include="Assets\15.png" />
+    <Content Include="Assets\150Icon.png" />
     <Content Include="Assets\15n.png" />
     <Content Include="Assets\16.png" />
     <Content Include="Assets\16n.png" />
@@ -166,6 +167,9 @@
     <Content Include="Assets\25n.png" />
     <Content Include="Assets\26.png" />
     <Content Include="Assets\26n.png" />
+    <Content Include="Assets\30Icon.png" />
+    <Content Include="Assets\310Icon.png" />
+    <Content Include="Assets\310largeIcon.png" />
     <Content Include="Assets\33.png" />
     <Content Include="Assets\33n.png" />
     <Content Include="Assets\34.png" />
@@ -182,6 +186,7 @@
     <Content Include="Assets\45n.png" />
     <Content Include="Assets\46.png" />
     <Content Include="Assets\46n.png" />
+    <Content Include="Assets\50Icon.png" />
     <Content Include="Assets\51.png" />
     <Content Include="Assets\51n.png" />
     <Content Include="Assets\52.png" />
@@ -193,11 +198,13 @@
     <Content Include="Assets\61.png" />
     <Content Include="Assets\61n.png" />
     <Content Include="Assets\62.png" />
+    <Content Include="Assets\620largeIcon.png" />
     <Content Include="Assets\62n.png" />
     <Content Include="Assets\63.png" />
     <Content Include="Assets\63n.png" />
     <Content Include="Assets\64.png" />
     <Content Include="Assets\64n.png" />
+    <Content Include="Assets\70Icon.png" />
     <Content Include="Assets\71.png" />
     <Content Include="Assets\71n.png" />
     <Content Include="Assets\72.png" />

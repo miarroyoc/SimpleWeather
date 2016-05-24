@@ -42,6 +42,6 @@
                          Margin="20,5,20,5" 
                          FontSize="20" 
                          Content="  Repositorio publico" 
-                         NavigateUri="https://github.com/mcmiguelac/SimpleWeather/releases/tag/v1.0-beta"/>
+                         NavigateUri="https://github.com/mcmiguelac/SimpleWeather/releases/tag/v1.0"/>
     </Grid>
 </Page>

@@ -1,6 +1,7 @@
 ﻿using SimpleWeather.Clases;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -17,53 +18,25 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
-//Autor 
-
 namespace SimpleWeather.Paginas
 {
-   
     public sealed partial class ContentPage : Page
     {
-        //Fecha y hora actual,
+        // Fecha y hora actual.
         DateTime now = DateTime.Now;
-        //instancia de la clase para poder utilizar sus metodos.
+        // Instancia de la clase para poder utilizar sus métodos.
         Metodos Metodos = new Metodos();
-        //urlCiudad enviado desde el frame principal.
+        // urlCiudad enviado desde el frame principal.
         string urlCiudad = null;
 
         public ContentPage()
         {
             this.InitializeComponent();
-            #region equivaente ha sharedPreferences de android en c#
-            /**/
-            //necesary
-            var localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-
-            //Create setting
-            localSettings.Values["caceres"] = true;
-            localSettings.Values["badajoz"] = false;
-            localSettings.Values["merida"] = true;
-
-            //Read data
-            Object value = localSettings.Values["caceres"];
-
-            if (value == null)
-            {
-                //no data
-            }
-            else
-            {
-                //Access data in value
-            }
-
-            //delete simple setting
-
-            localSettings.Values.Remove("merida");
-            /**/
-            #endregion
 
             #region Cambio a modo nocturno
-
+            
+            // Si la hora es más de las 10p.m. o menos de las 7a.m. la interfaz gráfica cambia a modo nocturno,
+            // Con el fondo de noche y los colores del texto claros, además en el modo nocturno los iconos, son con luna y no con sol.
             if ((Convert.ToInt32(now.ToString("HH")) <= 7) || (Convert.ToInt32(now.ToString("HH")) >= 22))
             {
                 FondoDeApp.ImageSource = new BitmapImage(new System.Uri("ms-appx:///Assets/noche.png"));
@@ -153,7 +126,7 @@ namespace SimpleWeather.Paginas
             #endregion
         }
 
-        //Obtiene los parametros enviados desde la llamada (la ciudad seleccionada).
+        // Obtiene los parametros enviados desde la llamada (la ciudad seleccionada).
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
                 string ciudad = e.Parameter as string;
@@ -161,6 +134,7 @@ namespace SimpleWeather.Paginas
                 obtener();
         }
 
+        // Método para la obtención de datos y uso de estos en la interfaz para mostrar los datos.
         private void obtener()
         {
             LecturaXml Datos = new LecturaXml();
@@ -173,6 +147,7 @@ namespace SimpleWeather.Paginas
                 reader = XmlReader.Create(URLString);
 
                 #region Primer Dia
+                //Lectura de datos.
                 DatosTiempo DatosHoy = null;
 
                 String franjaHoraria = Metodos.getFranjaHoraria(now);
@@ -188,8 +163,9 @@ namespace SimpleWeather.Paginas
                 textEstadoCielo.Text = DatosHoy.EstadoCielo;
                 textPrecipitaciones.Text = DatosHoy.ProbabilidadPrecipitaciones;
                 #endregion
-
                 #region Imagen
+                // Cambio de imagen según el modo día o nocturno.
+
                 string codigoEstadoCielo = DatosHoy.CodigoEstadoCielo;
 
                 codigoEstadoCielo = codigoEstadoCielo.Substring(0, 2);
@@ -207,7 +183,8 @@ namespace SimpleWeather.Paginas
             }
             catch (System.Net.WebException exc)
             {
-                //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
+                //"No se ha podido mostrar el contenido, problemas con la conexion a internet. esto es controlado anteriormente.";
+                Debug.WriteLine("Error for {0} has name {1}", GetHashCode(), exc);
             }
             #endregion
             #region Segundo Dia
@@ -216,7 +193,7 @@ namespace SimpleWeather.Paginas
                 reader = XmlReader.Create(URLString);
 
                 #region Segundo dia
-
+                //Lectura de datos.
                 DatosTiempo DatosDia2 = null;
 
                 String dia2 = (now.AddDays(1)).ToString("yyyy-MM-dd");
@@ -230,8 +207,8 @@ namespace SimpleWeather.Paginas
                 textTemperaturaMinimaDia2.Text = DatosDia2.TemperaturaMinima;
 
                 #endregion
-
                 #region Imagen
+                // Cambio de imagen según el modo día o nocturno.
                 string codigoEstadoCielo = DatosDia2.CodigoEstadoCielo;
 
                 codigoEstadoCielo = codigoEstadoCielo.Substring(0, 2);
@@ -249,7 +226,8 @@ namespace SimpleWeather.Paginas
             }
             catch (System.Net.WebException exc)
             {
-                //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
+                //"No se ha podido mostrar el contenido, problemas con la conexion a internet. esto es controlado anteriormente.";
+                Debug.WriteLine("Error for {0} has name {1}", GetHashCode(), exc);
             }
             #endregion
             #region Tercer Dia
@@ -258,7 +236,7 @@ namespace SimpleWeather.Paginas
                 reader = XmlReader.Create(URLString);
 
                 #region Tercer dia
-
+                //Lectura de datos.
                 DatosTiempo DatosDia3 = null;
 
                 String dia3 = (now.AddDays(2)).ToString("yyyy-MM-dd");
@@ -272,8 +250,8 @@ namespace SimpleWeather.Paginas
                 textTemperaturaMinimaDia3.Text = DatosDia3.TemperaturaMinima;
 
                 #endregion
-
                 #region Imagen
+                // Cambio de imagen según el modo día o nocturno.
                 string codigoEstadoCielo = DatosDia3.CodigoEstadoCielo;
 
                 codigoEstadoCielo = codigoEstadoCielo.Substring(0, 2);
@@ -291,7 +269,8 @@ namespace SimpleWeather.Paginas
             }
             catch (System.Net.WebException exc)
             {
-                //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
+                //"No se ha podido mostrar el contenido, problemas con la conexion a internet. esto es controlado anteriormente.";
+                Debug.WriteLine("Error for {0} has name {1}", GetHashCode(), exc);
             }
             #endregion
             #region Cuarto Dia
@@ -300,7 +279,7 @@ namespace SimpleWeather.Paginas
                 reader = XmlReader.Create(URLString);
 
                 #region Cuarto dia
-
+                //Lectura de datos.
                 DatosTiempo DatosDia4 = null;
 
                 String dia4 = (now.AddDays(3)).ToString("yyyy-MM-dd");
@@ -314,8 +293,8 @@ namespace SimpleWeather.Paginas
                 textTemperaturaMinimaDia4.Text = DatosDia4.TemperaturaMinima;
 
                 #endregion
-
                 #region Imagen
+                // Cambio de imagen según el modo día o nocturno.
                 string codigoEstadoCielo = DatosDia4.CodigoEstadoCielo;
 
                 codigoEstadoCielo = codigoEstadoCielo.Substring(0, 2);
@@ -333,7 +312,8 @@ namespace SimpleWeather.Paginas
             }
             catch (System.Net.WebException exc)
             {
-                //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
+                //"No se ha podido mostrar el contenido, problemas con la conexion a internet. esto es controlado anteriormente.";
+                Debug.WriteLine("Error for {0} has name {1}", GetHashCode(), exc);
             }
             #endregion
             #region Quinto Dia
@@ -342,7 +322,7 @@ namespace SimpleWeather.Paginas
                 reader = XmlReader.Create(URLString);
 
                 #region Quinto dia
-
+                //Lectura de datos.
                 DatosTiempo DatosDia5 = null;
 
                 String dia5 = (now.AddDays(4)).ToString("yyyy-MM-dd");
@@ -356,8 +336,8 @@ namespace SimpleWeather.Paginas
                 textTemperaturaMinimaDia5.Text = DatosDia5.TemperaturaMinima;
 
                 #endregion
-
                 #region Imagen
+                // Cambio de imagen según el modo día o nocturno.
                 string codigoEstadoCielo = DatosDia5.CodigoEstadoCielo;
 
                 codigoEstadoCielo = codigoEstadoCielo.Substring(0, 2);
@@ -375,7 +355,8 @@ namespace SimpleWeather.Paginas
             }
             catch (System.Net.WebException exc)
             {
-                //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
+                //"No se ha podido mostrar el contenido, problemas con la conexion a internet. esto es controlado anteriormente.";
+                Debug.WriteLine("Error for {0} has name {1}", GetHashCode(), exc);
             }
             #endregion
             #region Sexto Dia
@@ -384,7 +365,7 @@ namespace SimpleWeather.Paginas
                 reader = XmlReader.Create(URLString);
 
                 #region Sexto dia
-
+                //Lectura de datos.
                 DatosTiempo DatosDia6 = null;
 
                 String dia6 = (now.AddDays(5)).ToString("yyyy-MM-dd");
@@ -398,8 +379,8 @@ namespace SimpleWeather.Paginas
                 textTemperaturaMinimaDia6.Text = DatosDia6.TemperaturaMinima;
 
                 #endregion
-
                 #region Imagen
+                // Cambio de imagen según el modo día o nocturno.
                 string codigoEstadoCielo = DatosDia6.CodigoEstadoCielo;
 
                 codigoEstadoCielo = codigoEstadoCielo.Substring(0, 2);
@@ -417,7 +398,8 @@ namespace SimpleWeather.Paginas
             }
             catch (System.Net.WebException exc)
             {
-                //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
+                //"No se ha podido mostrar el contenido, problemas con la conexion a internet. esto es controlado anteriormente.";
+                Debug.WriteLine("Error for {0} has name {1}", GetHashCode(), exc);
             }
             #endregion
             #region Septimo Dia
@@ -426,7 +408,7 @@ namespace SimpleWeather.Paginas
                 reader = XmlReader.Create(URLString);
 
                 #region Septimo dia
-
+                //Lectura de datos.
                 DatosTiempo DatosDia7 = null;
 
                 String dia7 = (now.AddDays(6)).ToString("yyyy-MM-dd");
@@ -440,8 +422,8 @@ namespace SimpleWeather.Paginas
                 textTemperaturaMinimaDia7.Text = DatosDia7.TemperaturaMinima;
 
                 #endregion
-
                 #region Imagen
+                // Cambio de imagen según el modo día o nocturno.
                 string codigoEstadoCielo = DatosDia7.CodigoEstadoCielo;
 
                 codigoEstadoCielo = codigoEstadoCielo.Substring(0, 2);
@@ -459,43 +441,10 @@ namespace SimpleWeather.Paginas
             }
             catch (System.Net.WebException exc)
             {
-                //"No se ha podido mostrar el contenido, problemas con la conexion a internet.";
-                
+                //"No se ha podido mostrar el contenido, problemas con la conexion a internet. esto es controlado anteriormente.";
+                Debug.WriteLine("Error for {0} has name {1}", GetHashCode(), exc);
+
             }
-            #endregion
-
-            #region utilizar la clase XmlReader y leer xml
-            /*using (reader)
-            {
-                //reader.ReadToDescendant("dia"); para ir a un nodo exacto
-
-                while (reader.Read())
-                {
-                    switch (reader.NodeType)
-                    {
-                        case XmlNodeType.Element:
-                            cad += "<" + reader.Name;
-                            if (reader.HasAttributes)
-                            {
-                                while (reader.MoveToNextAttribute())
-                                { // Read the attributes.
-                                    cad += " " + reader.Name + "='" + reader.Value + "'";
-                                }
-                            }
-                            cad += ">";
-                            break;
-                        case XmlNodeType.Text:
-                            cad += reader.Value;
-                            break;
-                        case XmlNodeType.EndElement:
-                            cad += "</" + reader.Name + ">" + "\n";
-                            break;
-                    }
-                }
-
-                texto.Text = cad;
-            }*/
-
             #endregion
         }
     }

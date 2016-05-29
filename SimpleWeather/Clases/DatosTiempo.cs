@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleWeather.Clases
 {
+    // Objeto contenedor de datos meteorológicos.
     class DatosTiempo
     {
         #region Datos tiempo

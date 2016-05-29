@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,11 @@ namespace SimpleWeather.Clases
 {
     class Metodos
     {
-        //Metodo utilizado por el combo para la elección de la ciudad.
+        /* Método para la transformación del índice de la ciudad seleccionada del comboBox en la URL al documento Xml de dicha ciudad.
+        * Parametros:
+        *    indice, representa el índice de la ciudad seleccionada en el comboBox.
+        * Devuelve un string que contiene la URL al documento Xml de dicha ciudad.
+        */
         public string Ciudad(int indice)
         {
             string urlCiudad = null;
@@ -342,7 +347,11 @@ namespace SimpleWeather.Clases
             return urlCiudad;
         }
 
-        //Metodo que comprueba si dispone de conexión y es posible acceder y leer datos del XML de la ciudad correspondiente.
+        /* Método que comprueba si dispone de conexión y es posible acceder y leer datos del XML de la ciudad correspondiente.
+         * Parametros:
+         *      indice, representa el índice de la ciudad seleccionada en el comboBox.
+         * Devuelve un Boolean true si hay conexión y se puede acceder al Xml y false de lo contrario.
+         */
         public Boolean Conexion(int indice)
         {
             try
@@ -353,10 +362,19 @@ namespace SimpleWeather.Clases
             }
             catch (System.Net.WebException exc)
             {
+                //"No se ha podido acceder el contenido, problemas con la conexion a internet.";
+                Debug.WriteLine("Error for {0} has name {1}", GetHashCode(), exc);
                 return false;
             }
         }
-
+        
+        /* Método que comprueba la fecha de elaboración del documento Xml por parte del AEMET, 
+        * puesto que si el documento es elaborado otro día diferente al actual, no se mostrarán 7 días sino 6,
+        * el día actual y los 6 siguientes.
+        * Parametros:
+        *    indice, representa el índice de la ciudad seleccionada en el comboBox.
+        * Devuelve un string que contiene la fecha de elaboración.
+        */
         public string FechaElaboracion(int indice) {
             string fecha = null;
 
@@ -383,8 +401,13 @@ namespace SimpleWeather.Clases
             }
             return fecha.Substring(0,10);
         }
-        
+
         #region metodo para obtener la franja horaria 24/4
+        /* Método que obtiene la franja horaria en la que se encuentra (00-06, 06-12, 12-18, 18-24).
+        * Parametros:
+        *    DT, objeto DateTime que contiene la fecha y hora.
+        * Devuelve un string que contiene la franja horaria.
+        */
         public String getFranjaHoraria(DateTime DT)
         {
             String aux = DT.ToString("HH");
@@ -472,6 +495,11 @@ namespace SimpleWeather.Clases
         }
         #endregion
         #region metodo para obtener la hora "HH" 24/4
+        /* Método que obtiene la hora en la que se encuentra (06, 12, 18, 24).
+        * Parametros:
+        *    DT, objeto DateTime que contiene la fecha y hora.
+        * Devuelve un string que contiene la hora.
+        */
         public String getHora(DateTime DT)
         {
             String aux = DT.ToString("HH");

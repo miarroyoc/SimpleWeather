@@ -13,13 +13,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// La plantilla de elemento Página en blanco está documentada en http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace SimpleWeather.Paginas
 {
-    /// <summary>
-    /// Página vacía que se puede usar de forma independiente o a la que se puede navegar dentro de un objeto Frame.
-    /// </summary>
+    // Página que se muestra cuando no es posible acceder a los datos.
     public sealed partial class NoDisponible : Page
     {
         public NoDisponible()

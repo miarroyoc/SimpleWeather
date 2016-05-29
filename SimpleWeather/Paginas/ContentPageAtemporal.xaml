@@ -7,6 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <!--Igual que ContentPage pero con solo 6 dias mostrados-->
+    
     <!--#region Grid principal-->
     <Grid x:Name="gridPrincipal">
         <Grid.Background>
